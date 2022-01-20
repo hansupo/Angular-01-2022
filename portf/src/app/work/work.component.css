@@ -1,0 +1,21 @@
+div.wrapper {
+	width:50px;
+	height:50px;
+	position:fixed;
+	margin:auto auto;
+	background-color:rgba(34,34,34,0.5);
+	
+	transition:background-color ease-in-out 0.25s;
+	z-index:98;
+}
+div.wrapper:hover {
+	background-color:rgba(34,34,34,0.25);
+	cursor:pointer;
+}
+    div.wrapper > div.container {
+        width: 40px;
+        height:40px;
+        position:fixed;
+        background:#3498DB;
+        box-shadow:0 0 15px rgba(0,0,0,0.25);
+    }

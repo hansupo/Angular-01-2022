@@ -1,0 +1,99 @@
+
+.rectangle {
+    top: 5px;
+    right: 5px;
+    left: 5px;
+    display: flex;
+    justify-content:initial;
+    height: 70px;
+    width:unset;
+    margin: auto;
+    border-radius: 2px;
+    box-shadow:1px 1px 4px rgba(0, 0, 0, 0.445);
+    background-color: transparent;
+    justify-content:center;
+    text-align:center;
+    margin-bottom: 70px;
+
+
+
+}
+
+.portf {
+    position: absolute;
+    height: 50px;
+    width:150px;
+    justify-content:center;
+    text-align:center;
+    pointer-events: none;
+    user-select:none;
+}
+
+.portf p {
+    position:absolute;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+}
+
+.button {
+    position:absolute;
+    left: 20px;
+    height: 50px;
+    width: 175px;
+    margin:initial;
+    border-radius: 2px;
+    box-shadow:1px 1px 4px rgba(0, 0, 0, 0.445);
+    background-color: transparent;
+    justify-content:center;
+    text-align:center;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    border-radius: 30px;
+    background-color: #6DDADA;
+  
+}
+
+.rectangle :hover {
+    transition: ease-in-out 0.1s;
+    cursor:pointer;
+    background-color: rgb(73, 73, 73);
+    color:white;
+    box-shadow:1px 1px 15px rgb(128, 128, 128);
+    
+}
+.button p {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 13px;
+    pointer-events: none;
+    user-select:none;
+}
+.facebook-button {
+    position: absolute;
+    bottom: -1000px;
+    justify-content:center;
+    text-align:center;
+
+}
+
+.facebook-button img {
+height:30px;
+padding: 20px 10px;
+}
+
+.facebook-button span {
+    position: relative;
+    top: -30px;
+    height: 30px;
+    color: rgb(0, 0, 0)
+}
+
+.facebook-button:hover {
+    color: blue;
+    cursor: pointer;
+}
