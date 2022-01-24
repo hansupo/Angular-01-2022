@@ -1,22 +1,48 @@
-ul {
+.bar {
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
 }
 
-li {
+.nupp {
     float: left;
 }
 
-li a {
+.nupp a {
     display: flex;
+    gap:1rem;
     color:white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    cursor:pointer;
+    
 }
 
-li a:hover {
+.nupp a:hover {
     background-color: #111;
+    transform:scale(1.1)
 }
+
+
+
+.cart {
+    float:right;
+    display: flex;
+    margin-left: auto;
+    gap:1rem;
+    color:white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: royalblue;
+    color: white;
+    cursor:pointer;
+}
+
+.cart:hover {
+    background-color: rgb(37, 139, 129);
+    transform:scale(1.1);
+}
+

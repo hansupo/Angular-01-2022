@@ -1,0 +1,9 @@
+<div (click)="onKlikkimisel()">Kliki siia</div>
+<div (mouseenter)="onHiiregaPealeMinekul()" (mouseleave)="onHiirega2raMinekul()">Tule hiirega siia</div>
+<input type="text" (blur)="hiiregaV2ljaKl6psates()"><br><br>
+<input type="text" (keypress)="klaviatuuriVajutades()">
+
+<div *ngIf="n2itaKollast" class="yellow"></div>
+<div *ngIf="n2itaRohelist" class="green"></div>
+<div *ngIf="n2itaSinist" class="blue"></div>
+<div *ngIf="n2itaPunast" class="red"></div>

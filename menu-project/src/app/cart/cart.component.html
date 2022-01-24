@@ -1,0 +1,122 @@
+<br>
+<div class="tooterida">
+    <button (click)="onToode1()" class="toode">
+        {{toode1}}
+    </button>
+    <button (click)="onToode2()" class="toode">
+        {{toode2}}
+    </button>
+    <button (click)="onToode3()" class="toode">
+        {{toode3}}
+    </button>
+    <button (click)="onToode4()" class="toode">
+        {{toode4}}
+    </button>
+    <button (click)="onToode5()" class="toode">
+        {{toode5}}
+    </button>
+</div>       
+
+<br>
+
+<div class="page">
+    <div class="main">
+        <div class="main-bar">
+            <div class="main-bar-element1">Toode</div>
+            <div class="main-bar-element2">Kogus</div>
+            <div class="main-bar-element3">Hind</div>
+        </div>
+        <div *ngIf="ostukorviKoht1,korvikohtVaba">
+            <div class="cart" *ngIf="ostukorviLisaja">
+                <div class="cart-element" *ngFor="let tooteNimi of [ostukorviProdukt]">
+                    <div class="cart-element-product">{{ tooteNimi }}</div>
+                    <div class="cart-element-quantity">
+                        <button (click)="onEemaldaToode()">-</button>
+                        <div> {{ numbrilineMuutuja }}</div>
+                        <button (click)="onLisaToode()">+</button>
+                    </div>
+                    <div class="cart-element-price">2.30€</div>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="ostukorviKoht2,korvikohtVaba">
+            <div class="cart" *ngIf="ostukorviLisaja">
+                <div class="cart-element" *ngFor="let tooteNimi of [ostukorviProdukt]">
+                    <div class="cart-element-product">{{ tooteNimi }}</div>
+                    <div class="cart-element-quantity">
+                        <button (click)="onEemaldaToode()">-</button>
+                        <div> {{ numbrilineMuutuja }}</div>
+                        <button (click)="onLisaToode()">+</button>
+                    </div>
+                    <div class="cart-element-price">2.30€</div>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="ostukorviKoht3,korvikohtVaba">
+            <div class="cart" *ngIf="ostukorviLisaja">
+                <div class="cart-element" *ngFor="let tooteNimi of [ostukorviProdukt]">
+                    <div class="cart-element-product">{{ tooteNimi }}</div>
+                    <div class="cart-element-quantity">
+                        <button (click)="onEemaldaToode()">-</button>
+                        <div> {{ numbrilineMuutuja }}</div>
+                        <button (click)="onLisaToode()">+</button>
+                    </div>
+                    <div class="cart-element-price">2.30€</div>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="ostukorviKoht4,korvikohtVaba">
+            <div class="cart" *ngIf="ostukorviLisaja">
+                <div class="cart-element" *ngFor="let tooteNimi of [ostukorviProdukt]">
+                    <div class="cart-element-product">{{ tooteNimi }}</div>
+                    <div class="cart-element-quantity">
+                        <button (click)="onEemaldaToode()">-</button>
+                        <div> {{ numbrilineMuutuja }}</div>
+                        <button (click)="onLisaToode()">+</button>
+                    </div>
+                    <div class="cart-element-price">2.30€</div>
+                </div>
+
+            </div>
+        </div>
+        <div *ngIf="ostukorviKoht5,korvikohtVaba">
+            <div class="cart" *ngIf="ostukorviLisaja">
+                <div class="cart-element" *ngFor="let tooteNimi of [ostukorviProdukt]">
+                    <div class="cart-element-product">{{ tooteNimi }}</div>
+                    <div class="cart-element-quantity">
+                        <button (click)="onEemaldaToode()">-</button>
+                        <div> {{ numbrilineMuutuja }}</div>
+                        <button (click)="onLisaToode()">+</button>
+                    </div>
+                    <div class="cart-element-price">2.30€</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div *ngIf="ostukorviKoht6,korvikohtVaba">
+            <div class="cart" *ngIf="ostukorviLisaja">
+                <div class="cart-element" *ngFor="let tooteNimi of [ostukorviProdukt]">
+                    <div class="cart-element-product">{{ tooteNimi }}</div>
+                    <div class="cart-element-quantity">
+                        <button (click)="onEemaldaToode()">-</button>
+                        <div> {{ numbrilineMuutuja }}</div>
+                        <button (click)="onLisaToode()">+</button>
+                    </div>
+                    <div class="cart-element-price">2.30€</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="end-bar">
+        <div class="price-calc">Ostukorvi maksumus:</div>
+        <div class="price-calc-result">2.30€</div>
+    </div>
+
+</div>

@@ -1,0 +1,138 @@
+.page {
+    max-width: 40rem;
+    margin-left: auto;
+
+}
+
+.main {
+    background-color: royalblue;
+    max-width: 40rem;
+    min-height: 16px;
+    /* border: rgb(37, 139, 129) 2px solid */
+}
+
+.main-bar {
+    display: flex;
+    color:white;
+    gap:1rem;
+    padding: 14px 16px;
+    /* border:rgb(255, 0, 0) 2px solid; */
+    background-color: #333;
+}
+
+.main-bar > .main-bar-element1 {
+    /* border:rgb(0, 238, 255) 2px solid; */
+    width: 15rem;
+    min-width: 8rem;
+}
+
+.main-bar > .main-bar-element2 {
+    position: relative;
+
+    text-align:center;
+    align-self: center;
+    /* border:rgb(255, 0, 0) 2px solid; */
+    width: 5rem;
+
+}
+
+.main-bar > .main-bar-element3 {
+
+    /* border:rgb(212, 0, 255) 2px solid; */
+    width: 15rem;
+    min-width: 5rem;
+    text-align:end;
+
+}
+
+.cart {
+    /* border: white 2px dotted; */
+
+}
+
+.cart-element {
+    display: flex;
+    color:white;
+    gap:1rem;
+    padding: 14px 16px;
+    border-bottom: white 2px dotted;
+}
+
+.cart-element > .cart-element-quantity {
+    position: relative;
+
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+
+    /* border:rgb(212, 0, 255) 2px solid; */
+    width: 5rem;
+}
+
+.cart-element > .cart-element-product {
+    /* border:rgb(0, 238, 255) 2px solid; */
+    width: 15rem;
+    min-width: 8rem;
+}
+
+
+.cart-element > .cart-element-price {
+
+    width: 15rem;
+    min-width: 5rem;
+    text-align:end;
+    /* border:rgb(255, 196, 0) 2px solid; */
+
+}
+
+.end-bar {
+    display: flex;
+    gap:1rem;
+    padding: 14px 16px;
+    max-width: 37.3rem;
+}
+
+.end-bar > .price-calc {
+    margin-left: auto;
+}
+
+button {
+    border-radius: 20px;
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: auto;
+}
+button:hover {
+    background-color: #111;
+    transform:scale(1.1);
+    cursor:pointer;
+}
+
+button :target {
+background-color: aquamarine;
+}
+
+.tooterida {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.toode {
+    min-width: 5rem;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+    margin: auto;
+}
+
+.button > .toode :hover {
+    background-color: aquamarine;
+}
