@@ -16,14 +16,7 @@ export class OstukorvComponent implements OnInit {
   // toodeHind2 = 1.5;
   // toodeAktiivne2 = true;
 
-tooted = [
-  
-    {nimi:'Coca-cola', hind: 1, aktiivne: true},
-    {nimi:'Fanta', hind: 1.5, aktiivne: true},
-    {nimi:'Sprite', hind: 2, aktiivne: true},
-    {nimi:'Vishy', hind: 0.5, aktiivne: true},
-    {nimi:'Vitamin well', hind: 2.5, aktiivne: true}
-    ];
+tooted: any[] = [];
 
 ostukorviSumma = 0
 
@@ -34,13 +27,18 @@ ostukorviSumma = 0
   }
 
   ngOnInit(): void {
-    console.log("mindi ostukorv component lehele");
+    const ostukorviTooted = sessionStorage.getItem("ostukorv");
+    if (ostukorviTooted) {
+      this.tooted = JSON.parse(ostukorviTooted);
+    }
     this.arvutaOstukorviSumma();
   }
 
   onTyjendaOstukorv() {
     this.tooted = [];
+    sessionStorage.setItem("ostukorv", JSON.stringify(this.tooted));
     this.arvutaOstukorviSumma();
+    
   }
 
   onEemaldaOstukorvist(toode: any) {
@@ -51,16 +49,15 @@ ostukorviSumma = 0
     console.log(this.tooted);
     this.tooted.splice(j2rjekorraNumber, 1)
     console.log(this.tooted);
+    sessionStorage.setItem("ostukorv", JSON.stringify(this.tooted));
     this.arvutaOstukorviSumma();
     
   }
 
-  onLisaOstuKorvi(toode: any) {
-    console.log("ostukorvi lisatud")
-    console.log(toode);
-    console.log(this.tooted);
+  onLisaOstukorvi(toode: any) {
+
     this.tooted.push(toode);
-    console.log(this.tooted);
+    sessionStorage.setItem("ostukorv", JSON.stringify(this.tooted));
     this.arvutaOstukorviSumma();
     
   }

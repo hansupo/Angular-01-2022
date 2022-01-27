@@ -2,7 +2,7 @@
 
 <br><br>
 
-<button *ngIf="tooted.length !== 0" (click)="onTyjendaOstukorv()">Tühjenda ostukorv</button>
+<button class="btn btn-secondary" *ngIf="tooted.length !== 0" (click)="onTyjendaOstukorv()">Tühjenda ostukorv</button>
 <div *ngIf="tooted.length === 0">Ostukorv on tühi</div>
 <br><br>
 
@@ -11,8 +11,8 @@
         <div>{{ toode.nimi }}</div>
         <div>{{ toode.hind }}</div>
         <div>{{ toode.aktiivne }}</div>
-        <button (click)="onLisaOstuKorvi(toode)">+</button>
-        <button (click)="onEemaldaOstukorvist(toode)">-</button>
+        <button class="btn btn-secondary" (click)="onLisaOstukorvi(toode)">+</button>
+        <button class="btn btn-secondary" (click)="onEemaldaOstukorvist(toode)">-</button>
     </div>
 
     <br><br>

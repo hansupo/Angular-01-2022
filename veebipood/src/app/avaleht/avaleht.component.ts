@@ -9,6 +9,15 @@ export class AvalehtComponent implements OnInit {
   kahendV22rtus = true; //boolean
   kahendV22rtusKaks = false; //boolean
 
+  tooted = [
+  
+    {nimi:'Coca-cola', hind: 1, aktiivne: true},
+    {nimi:'Fanta', hind: 1.5, aktiivne: true},
+    {nimi:'Sprite', hind: 2, aktiivne: true},
+    {nimi:'Vishy', hind: 0.5, aktiivne: true},
+    {nimi:'Vitamin well', hind: 2.5, aktiivne: true}
+    ];
+
   //string
   s6nalineMuutuja = "Ostukorvis tooteid:";
 
@@ -26,11 +35,18 @@ export class AvalehtComponent implements OnInit {
     console.log("enne htmli käimaminekut");
   }
 
-  onLisaOstukorvi() {
-    console.log("ostukorvi lisamise funktsioon töötab");
-    this.kahendV22rtus = !this.kahendV22rtus;
-    this.kahendV22rtusKaks = !this.kahendV22rtusKaks;
-    this.numbrilineMuutuja = 1;
+  onLisaOstukorvi(toode: any) {
+    const sessionStorageOstukorv = sessionStorage.getItem("ostukorv");
+
+    if (sessionStorageOstukorv) {
+      const ostukorviTooted = JSON.parse(sessionStorageOstukorv);
+      ostukorviTooted.push(toode);
+      sessionStorage.setItem("ostukorv", JSON.stringify(ostukorviTooted))
+      
+    } else { 
+      sessionStorage.setItem("ostukorv", JSON.stringify([toode]));
+    }
+
   }
 
 }

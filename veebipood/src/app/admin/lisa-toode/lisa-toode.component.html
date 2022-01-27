@@ -1,0 +1,10 @@
+
+<form (ngSubmit)="onLisa(tooteLisamiseVorm)" #tooteLisamiseVorm="ngForm">
+    <label>Nimetus:</label><br>
+    <input ngModel name="nimi" type="text" required><br><br>
+    <label>Hind:</label><br>
+    <input ngModel name="hind" type="number" required><br><br>
+    <label>Aktiivne:</label><br>
+    <input ngModel name="aktiivne" type="checkbox"><br><br>
+    <button class="btn btn-secondary" [disabled]="tooteLisamiseVorm.invalid">Lisa toode</button>
+</form>
