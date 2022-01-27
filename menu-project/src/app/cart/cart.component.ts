@@ -10,95 +10,89 @@ export class CartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.arvutaOstukorviSumma();
   }
 
-  numbrilineMuutuja = 1;
-  ekstraToode = 1;
-  ostukorviLisaja = false;
-  toode1 = "Coca-cola";
-  toode2 = "Fanta";
-  toode3 = "Sprite";
-  toode4 = "Vishy";
-  toode5 = "Vitamin Well";
-  ostukorviProdukt = "";
-  ostukorviKoht1 = false;
-  ostukorviKoht2 = false;
-  ostukorviKoht3 = false;
-  ostukorviKoht4 = false;
-  ostukorviKoht5 = false;
-  ostukorviKoht6 = false;
-  korvikohtVaba = true;
+  // Definitsioonid:
 
-  onOstukorvilisatud() {
+  tooted = [
+    {nimi:'Coca-cola', hind: 1.99, aktiivne: true, kogus: 0},
+    {nimi:'Fanta', hind: 1.69, aktiivne: true, kogus: 0},
+    {nimi:'Sprite', hind: 1.79, aktiivne: true, kogus: 0},
+    {nimi:'Vishy', hind: 1.19, aktiivne: true, kogus: 0},
+    {nimi:'Vitamin well', hind: 2.99, aktiivne: true, kogus: 0},
+    {nimi:'Coca-cola Zero', hind: 2.19, aktiivne: true, kogus: 0},
+    {nimi:'Fanta Blue', hind: 1.99, aktiivne: true, kogus: 0},
+    {nimi:'Sprite White', hind: 1.99, aktiivne: true, kogus: 0},
+    {nimi:'Vishy mustika', hind: 1.29, aktiivne: true, kogus: 0},
+    {nimi:'Vitamin-well-done', hind: 50, aktiivne: true, kogus: 0}
+  ]
 
-  }
+  ostukorv = [{nimi:'Placeholder', hind: 0, aktiivne: false, kogus: 0}];
+  check = false
+  kogusOstukorvis = 0
+  ostukorviSumma = 0
+  hind = [0]
+  hindKokku = 0
+  toodetekogus = 0
 
-  onToode1() {
-    console.log("coca-cola ostukorvi lisatud");
+  // Funktsioonid:
 
-if (this.ostukorviKoht1=false,this.korvikohtVaba=true) {
-      this.ostukorviKoht1 = true;
-      this.korvikohtVaba = false;
-      this.ostukorviProdukt = "Coca-cola"
-      this.ostukorviLisaja = true;
-} else {
-      this.ostukorviKoht2 = true;
-      this.korvikohtVaba = false;
-      this.ostukorviProdukt = "Coca-cola"
-      this.ostukorviLisaja = true;
-}
+  // Toode lisatakse ostukorvi 
+  // a) kui toodet ei ole ostukorvis -> lisatakse uus kirje, kogus = 0 ja kogus + 1
+  // b) kui toode juba on ostukorvis -> kogus + 1
+  // c) arvutatakse ostukorvi summa
 
-  }
-
-  onToode2() {
-    console.log("fanta ostukorvi lisatud");
-if (this.ostukorviKoht1=false,this.korvikohtVaba=true) {
-      this.ostukorviKoht1 = true;
-      this.korvikohtVaba = false;
-      this.ostukorviProdukt = "Fanta"
-      this.ostukorviLisaja = true;
-} else {
-      this.ostukorviKoht1 = true;
-      this.korvikohtVaba = false;
-      this.ostukorviProdukt = "Fanta"
-      this.ostukorviLisaja = true;
+  onToodeKorvi(toode: any) {
+    this.check = this.ostukorv.includes(toode)
+    if (!this.check) {
+      this.ostukorv.splice(0, 0, toode)
+      toode.kogus = 0
     }
-
+    toode.kogus = toode.kogus + 1
+    this.arvutaOstukorviSumma();
+    this.onArvutaToodeteKogus()
   }
 
-  onToode3() {
-    console.log("sprite ostukorvi lisatud");
-    this.ostukorviLisaja = true;
-    this.ostukorviProdukt = "Sprite"
+  // Toode eemaldatakse ostukorvist 
+  // a) kui kogus on 1 -> eemaldatakse toodekirje ostukorvist
+  // b) kui kogus on 1+ -> kogus - 1
+  // c) arvutatakse ostukorvi summa
+
+  onEemaldaToodeKorvist(toode: any) {
+    if (toode.kogus <= 1) {
+      const j2rjekorraNumber = this.ostukorv.indexOf(toode);
+      this.ostukorv.splice(j2rjekorraNumber, 1);
+    } 
+    toode.kogus = toode.kogus - 1
+    this.arvutaOstukorviSumma();
+    this.onArvutaToodeteKogus()
   }
 
-  onToode4() {
-    console.log("vishy ostukorvi lisatud");
-    this.ostukorviLisaja = true;
-    this.ostukorviProdukt = "Vishy"
+  // Arvutatakse ostukorvi summa -> iga ostukorvi kirje kohta korrutatakse...
+  // ...toote hind ja toote kogus ning liidetakse need
+  private arvutaOstukorviSumma() {
+    this.ostukorviSumma = 0;
+    this.ostukorv.forEach(element => this.ostukorviSumma = this.ostukorviSumma + element.hind * element.kogus );
   }
 
-  onToode5() {
-    console.log("vitaminwell ostukorvi lisatud");
-    this.ostukorviLisaja = true;
-    this.ostukorviProdukt = "Vitamin Well"
+  onTyhjendaOstukorv() {
+    this.ostukorv = [{nimi:'Placeholder', hind: 0, aktiivne: false, kogus: 0}];
+    this.ostukorviSumma = 0; 
+    this.onArvutaToodeteKogus()
   }
 
-  onToode6() {
+  onArvutaToodeteKogus() {
+    this.toodetekogus = 0
+    this.ostukorv.forEach(element => this.toodetekogus = this.toodetekogus + element.kogus)
+    console.log(this.toodetekogus);
     
   }
+  
 
-  onLisaToode() {
-    console.log("ostukorvi lisamise funktsioon töötab");
-    this.numbrilineMuutuja = this.numbrilineMuutuja + 1
-  }
-
-  onEemaldaToode() {
-    console.log("ostukorvi eemaldamise funktsioon töötab");
-    this.numbrilineMuutuja = this.numbrilineMuutuja - this.ekstraToode
-    if (this.numbrilineMuutuja < 1) {
-      this.numbrilineMuutuja = 0
-    }
-  }
 
 }
+
+
+
+

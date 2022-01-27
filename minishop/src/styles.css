@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+*{font-family: 'Abril Fatface', cursive;}
+
+.main.text {
+    margin: 100px;
+    font-size: 1.1em;
+}
+
+.centered {
+    max-width: 500px;
+    min-height: auto;
+    margin:auto;
+    background-color: antiquewhite;
+    padding: 3em;
+}
+nav {
+    align-items: center;
+}

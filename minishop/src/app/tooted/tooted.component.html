@@ -1,0 +1,13 @@
+<div class="centered">
+    <h1>Tooted meie kollektsioonist:</h1>
+<br>
+<div class="main-text" *ngFor="let product of products">
+    <b>{{ product.name }}</b> ( {{ product.color }} )
+    <br>
+    {{ product.price }}€
+    <br>
+    <button type="button" class="btn btn-primary">Lisa ostukorvi</button>
+    <br><br>
+
+</div>
+</div>
