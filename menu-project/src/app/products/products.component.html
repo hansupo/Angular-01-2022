@@ -1,1 +1,14 @@
-<p>products works!</p>
+<br>
+<div class="label-container"><div class="label">Tooted</div></div>
+<div class="main-view">
+    <div class="grid-container">
+        <div (click)="onToodeKorvi(toode)" class="toode" *ngFor="let toode of tooted">
+            <div class="grid-element">
+                <div class="special">
+                    <div class="toode">{{toode.nimi}}</div>
+                    <div class="hind">{{toode.hind}}€</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

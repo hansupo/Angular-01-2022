@@ -1,0 +1,194 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 180px));
+    padding: 0;
+    gap: 15px;
+    row-gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.inimesed, .statistika {
+    min-height: 200px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.233);
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.158);
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    padding:10px;
+    text-align: left;
+}
+
+.statistika {
+    background-color: rgba(197, 197, 197, 0.219);
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    gap: 10px;
+}
+
+
+
+.button-container {
+    display: flex;
+    justify-content: space-evenly;
+    transform: scale(0);
+}
+
+.statistika > .button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.statistika > .text-container {
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.text-container {
+    text-align: center;
+    line-height: 150%;
+}
+
+.inimesed > .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px
+}
+
+.nimi {
+    font-weight: 500;
+    font-size: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-family: 'Playfair Display', serif;
+}
+
+.mat-raised-button {
+    opacity: 70%;
+    letter-spacing: 1px;
+}
+
+.icon-holder {
+    height: 200px;
+    border: 0 none;
+    background-color: rgba(240, 248, 255, 0);
+    pointer-events: none;
+}
+
+.icon-holder > .material-icons {
+    transform: scale(3);
+    color: rgba(255, 255, 240, 0.699);
+    pointer-events: none;
+}
+
+.icon-holder-wrapper {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.inimesed:hover {
+    transform: scale(1.1);
+    transition: all 250ms;
+}
+
+.statistika:hover {
+    background-color: rgba(255, 255, 255, 0.233);
+    min-height: 215px;
+    transform: scale(1.1);
+    transition: all 250ms;
+}
+
+.inimesed:hover .button-container, .inimesed.hover .button-container {
+    transform: scale(1);
+    transition: 150ms;
+}
+
+.statistika:hover .button-container, .statistika.hover .button-container {
+    transform: scale(1);
+    transition: 100ms;
+}
+
+.statistika:hover .material-icons, .statistika:hover .material-icons {
+    color: white;
+    transform: scale(5);
+    transition: 250ms;
+}
+
+.inimesed:hover .nimi, .inimesed.hover .nimi {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: 150ms;
+}
+
+.x-button {
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 40px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.x-button:hover {
+    background-color: red;
+    color: rgb(255, 255, 255);
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 150px));
+        padding: 0;
+        gap: 15px;
+        row-gap: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mat-raised-button {
+        opacity: 70%;
+        letter-spacing: 0;
+        text-align: center;
+        font-size: 10px;
+        padding: 0;
+        width: auto;
+        border-radius: 20px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .inimesed {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding: 10px;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .text-container > .nimi {
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+
+    .inimesed > .text-container {
+        min-height: 190px;
+    }
+ 
+}
