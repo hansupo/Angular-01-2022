@@ -1,0 +1,89 @@
+.main {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+
+}
+
+.shadow {
+    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.068);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.rea-wrapper {
+    background-color: rgb(255, 255, 255);
+    color: #333;
+    padding: 10px;
+    gap: 10px;
+    border-bottom: 1px dashed black;
+
+}
+
+.tooterida {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.button-container > button {
+    display: block;
+    border-radius: 20px;
+    padding: 0;
+}
+
+.toode-nimi {
+    width: 200px;
+}
+
+.toode-hind {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.bottom-bar {
+    position: relative;
+    color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.bottom-bar > button {
+    float:right;
+    position: absolute;
+    right: 30px;
+}
+
+.tyhjus {
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+
+}
+
+.tyhjus > p {
+    background-color: #333;
+    padding: 20px 40px; 
+    border-radius: 5px;
+    color: white;
+    user-select: none;
+}

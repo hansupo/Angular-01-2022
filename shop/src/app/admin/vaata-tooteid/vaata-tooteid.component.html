@@ -1,0 +1,14 @@
+<div class="main">
+    <div class="rea-wrapper" *ngFor="let toode of tooted">
+        <div class="tooterida">
+            <div class="input">{{ toode.nimi }}</div>
+            <div class="input">{{ toode.hind }}</div>
+            <div class="input"><img src="{{toode.pilt}}" alt=""></div>
+            <div class="input">{{ toode.aktiivne }}</div>
+            <div class="button-container">
+                <button mat-flat-button color="accent" (click)="onKustutaToode(toode)">Kustuta toode</button>
+                <button mat-flat-button color="primary" routerLink="/admin/muuda/{{toode.nimi.toLowerCase().replace(' ', '-').replace('õ', 'o')}}">Muuda</button>    
+            </div>
+        </div>
+    </div>
+</div>

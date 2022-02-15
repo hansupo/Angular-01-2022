@@ -1,0 +1,8 @@
+{
+    "buttons": {
+        "buy": "Osta",
+        "add": "Lisa",
+        "remove": "Eemalda",
+        "empty-list": "Tühjenda list"
+    }
+}

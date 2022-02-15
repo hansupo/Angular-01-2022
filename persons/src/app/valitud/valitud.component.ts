@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-valitud',
@@ -7,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValitudComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http:HttpClient, private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.onArvutaStatistika ();
+
+    const inimesedLocalStoragest = localStorage.getItem("inimesed")
+    if (inimesedLocalStoragest) {
+      this.inimesed = JSON.parse(inimesedLocalStoragest)
+    }
   }
 
   inimesed = [
@@ -125,6 +132,20 @@ export class ValitudComponent implements OnInit {
   onLisa(vorm: any) {
     if (vorm.valid) {
       this.inimesed.push(vorm.value)
+      if (vorm.value.aktiivne === '') {
+        vorm.value.aktiivne = false;
+      }
+
+      const inimesedLocalStoragest = localStorage.getItem("inimesed");
+      if (inimesedLocalStoragest) {
+        const inimesed = JSON.parse(inimesedLocalStoragest);
+        inimesed.push(vorm.value);
+        localStorage.setItem("inimesed", JSON.stringify(inimesed));
+      }
+      else {
+        localStorage.setItem("inimesed", JSON.stringify([vorm.value]))
+      }
+      
       this.onArvutaStatistika ();
       this.uusVormAktiivne = false
     }
@@ -136,5 +157,41 @@ export class ValitudComponent implements OnInit {
   onLisaUus () {
     this.uusVormAktiivne = true
   }
+
+  onOstaInimene (inimene: any) {
+    let inimeseHind = inimene.kasutajavanus * 10
+    console.log(inimeseHind);
+
+    const makseAndmed = {
+      "api_username": "92ddcfab96e34a5f",
+      "account_name": "EUR3D1",
+      "amount": inimeseHind,
+      "order_reference": Math.floor(Math.random() * 8999999 + 100000),
+      "nonce": "92ddcfab96e34a5f" + Math.floor(Math.random() * 8999999 + 100000) + new Date() ,
+      "timestamp": new Date(),
+      "customer_url": "https://www.delfi.ee"
+    }
+
+    const url = "https://igw-demo.every-pay.com/api/v4/payments/oneoff"
+
+    this.http.post<any>(
+      url,
+      makseAndmed,
+      {headers:
+        new HttpHeaders(
+          {
+            'Authorization':
+            'Basic OTJkZGNmYWI5NmUzNGE1Zjo4Y2QxOWU5OWU5YzJjMjA4ZWU1NjNhYmY3ZDBlNGRhZA=='
+          }
+        )
+      }
+    ).subscribe(response => window.location.href = response.payment_link);
+    
+  }
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
+  }
+
 
 }

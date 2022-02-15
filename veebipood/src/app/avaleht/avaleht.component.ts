@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,13 +10,12 @@ export class AvalehtComponent implements OnInit {
   kahendV22rtus = true; //boolean
   kahendV22rtusKaks = false; //boolean
 
-  tooted = [
-  
-    {nimi:'Coca-cola', hind: 1, aktiivne: true},
-    {nimi:'Fanta', hind: 1.5, aktiivne: true},
-    {nimi:'Sprite', hind: 2, aktiivne: true},
-    {nimi:'Vishy', hind: 0.5, aktiivne: true},
-    {nimi:'Vitamin well', hind: 2.5, aktiivne: true}
+  tooted: any[] = [
+    // {nimi:'Coca-cola', hind: 1, aktiivne: true},
+    // {nimi:'Fanta', hind: 1.5, aktiivne: true},
+    // {nimi:'Sprite', hind: 2, aktiivne: true},
+    // {nimi:'Vishy', hind: 0.5, aktiivne: true},
+    // {nimi:'Vitamin well', hind: 2.5, aktiivne: true}
     ];
 
   //string
@@ -24,7 +24,7 @@ export class AvalehtComponent implements OnInit {
   //number
   numbrilineMuutuja = 1;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     console.log("kui component ehitatakse valmis, siis pannakse esiemene konstruktor käima");
     console.log("konstruktri sisse pannakse ühendusi erinevate failidega");
     
@@ -33,6 +33,26 @@ export class AvalehtComponent implements OnInit {
   ngOnInit(): void {
     console.log("avaleht käivitub");
     console.log("enne htmli käimaminekut");
+    // const tootedLocalStoragest = localStorage.getItem("tooted");
+    // if (tootedLocalStoragest) {
+    //   this.tooted = JSON.parse(tootedLocalStoragest)
+    //   console.log(this.tooted);
+      
+    // }
+
+    this.http.get<any>(
+      "https://veebipood-hans-default-rtdb.europe-west1.firebasedatabase.app/tooted.json")
+      .subscribe(tagastus => {
+        console.log(tagastus);
+        const uusMassiiv = [];
+        for (const key in tagastus) {
+          uusMassiiv.push(tagastus[key]);
+        }
+        this.tooted = uusMassiiv;
+        
+      });
+
+      
   }
 
   onLisaOstukorvi(toode: any) {

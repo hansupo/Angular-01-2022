@@ -32,9 +32,11 @@
     justify-content:center;
     gap: 10px;
 }
-
-
-
+/*  */
+input.ng-invalid.ng-touched {
+    border: 1px dotted red;
+}
+/*  */
 .button-container {
     display: flex;
     justify-content: space-evenly;
@@ -56,6 +58,7 @@
 .text-container {
     text-align: center;
     line-height: 150%;
+    cursor: pointer;
 }
 
 .inimesed > .text-container {
@@ -148,15 +151,7 @@
 
 
 @media only screen and (max-width: 600px) {
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(auto, 150px));
-        padding: 0;
-        gap: 15px;
-        row-gap: 15px;
-        justify-content: center;
-        align-items: center;
-    }
+    
 
     .mat-raised-button {
         opacity: 70%;
@@ -185,6 +180,7 @@
     .text-container > .nimi {
         padding-bottom: 0px;
         padding-top: 0px;
+
     }
 
     .inimesed > .text-container {

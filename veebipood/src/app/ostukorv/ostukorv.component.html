@@ -17,4 +17,7 @@
 
     <br><br>
 </div>
-<div *ngIf="ostukorviSumma !== 0">Kokku: {{ ostukorviSumma }} €</div>
+<div>
+    <div *ngIf="ostukorviSumma !== 0">Kokku: {{ ostukorviSumma }} €</div>
+    <button (click)="mineMaksma()">Maksma</button>
+</div>

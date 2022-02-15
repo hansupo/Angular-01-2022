@@ -1,0 +1,15 @@
+<div class="inimesed" *ngFor="let inimene of inimesed">
+    <div class="text-container">
+        <div>ID: {{inimene.id}}</div>
+        <div class="nimi">{{inimene.name}}</div>
+        <div>
+            <div>Kasutaja: {{inimene.username}}</div>
+            <div>{{inimene.email}}</div>
+            <div>Vanus: {{inimene.kasutajavanus}}</div>
+        </div>
+    </div>
+    <!-- <div class="button-container">
+        <button mat-raised-button (click)="onLisaValitu(inimene)">Lisa</button>
+        <button mat-raised-button (click)="onEemaldaValitu(inimene)">Eemalda</button>
+    </div> -->
+</div>

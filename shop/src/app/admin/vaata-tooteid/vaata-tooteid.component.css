@@ -1,0 +1,43 @@
+.main {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.068);
+
+}
+
+.rea-wrapper {
+    background-color: rgb(255, 255, 255);
+    color: #333;
+    padding: 10px;
+    border-bottom: 1px dashed black;
+}
+
+.tooterida {
+    display: flex;
+
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input {
+
+    width: 100px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+
+    width: 210px;
+    justify-content: space-between;
+}
+
+
+
+img {
+    width: auto;
+    height: 30px;
+}

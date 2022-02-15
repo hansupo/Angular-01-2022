@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 *{font-family: 'Bebas Neue', cursive;}
 
-
+:root {
+    --trans-white: rgba(255, 255, 255, 0.795);
+    --off-black: #333;
+}
 
 .bar {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
-    box-shadow: 1px 1px 10px 1px rgb(94, 94, 94);
-    border-radius: 10px;
+    background-color: rgba(51, 51, 51, 0.705);
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.37);
 }
 
 .nupp {
@@ -25,7 +27,6 @@
     padding: 14px 16px;
     text-decoration: none;
     cursor:pointer;
-    border: red, 3px, solid;
     flex-wrap: nowrap;
     font-size: 1.5em;
     
@@ -33,7 +34,6 @@
 
 .nupp a:hover {
     background-color: #111;
-    transform:scale(1.1)
 }
 
 
@@ -51,7 +51,6 @@
     color: white;
     cursor:pointer;
     font-size: 1.5em;
-    border-radius: 10px;
 }
 
 .cart:hover {

@@ -1,0 +1,8 @@
+{
+    "buttons": {
+        "buy": "Buy",
+        "add": "Add",
+        "remove": "Remove",
+        "empty-list": "Empty list"
+    }
+}

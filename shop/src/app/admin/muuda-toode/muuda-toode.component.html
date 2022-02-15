@@ -1,0 +1,28 @@
+<div class="main">
+    <div class="wrapper">
+        <form  *ngIf="tooteMuutmiseVorm" (ngSubmit)="onMuuda()" [formGroup]="tooteMuutmiseVorm">
+            <div class="input">
+                <input formControlName="nimi" type="text" required>
+            </div>
+    
+            <div class="input">
+                <input formControlName="hind" type="number" required>
+            </div>
+    
+            <div class="input">
+                <input formControlName="pilt" type="text">
+            </div>
+    
+            <div class="input" class="aktiivne">
+                <input formControlName="aktiivne" type="checkbox">
+            </div>
+    
+            <div class="button-container">
+                <button mat-flat-button>INFO</button>
+                <button mat-flat-button [disabled]="tooteMuutmiseVorm.invalid" color="secondary">Muuda toode</button>
+            </div>
+    
+
+        </form>
+    </div>
+</div>

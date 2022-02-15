@@ -1,0 +1,10 @@
+<div *ngFor="let product of products">
+    <div>{{ product.cartProduct.name }}</div>
+    <div>{{ product.cartProduct.price }}€/tk</div>
+    <button class="btn btn-primary" (click)="onDecreaseQuantity(product)">-</button>
+    <div>{{ product.quantity }}tk</div>
+    <button class="btn btn-primary" (click)="onIncreaseQuantity(product)">+</button>
+    <div>Kokku: {{ product.cartProduct.price * product.quantity }}€</div>
+    <button class="btn btn-primary" (click)="onRemoveFromCart(product)">X</button>
+    <br><br>
+</div>

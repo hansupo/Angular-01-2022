@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/"><img src="assets/websho.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+
+            <a class="nav-link" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
+            <a class="nav-link" routerLink="/ostukorv">{{ "navbar.cart-button" | translate}}</a>
+            <div class="lang-box">
+              <img class="lang-img" (click)="useLanguage('en')" src="assets/english.png" alt="">
+              <img class="lang-img" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
+            </div>
+        </div>
+      </div>
+    </div>
+  </nav>

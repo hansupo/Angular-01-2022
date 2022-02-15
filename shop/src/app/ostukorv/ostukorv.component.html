@@ -1,0 +1,23 @@
+
+<div class="main">
+    <button mat-flat-button color="accent" *ngIf="tooted.length !== 0" (click)="onTyjendaOstukorv()">Tühjenda ostukorv</button>
+<div class="tyhjus" *ngIf="tooted.length === 0"><p>Ostukorv on tühi :(</p></div>
+<br><br>
+
+<div class="shadow">
+    <div class="rea-wrapper" *ngFor="let toode of tooted">
+        <div class="tooterida" *ngIf="toode.aktiivne">    
+            <div class="toode-nimi">{{ toode.nimi }}</div>
+            <div class="toode-hind">{{ toode.hind }}€</div>
+            <div class="button-container">
+                <button mat-flat-button color="primary" (click)="onLisaOstukorvi(toode)">+</button>
+                <button mat-flat-button color="primary" (click)="onEemaldaOstukorvist(toode)">-</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bottom-bar">
+    <div *ngIf="ostukorviSumma !== 0">Kokku: {{ ostukorviSumma }} €</div>
+    <button *ngIf="tooted.length !== 0" mat-flat-button color="accent" (click)="mineMaksma()">Maksma</button>
+</div>
+</div>

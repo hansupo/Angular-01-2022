@@ -1,0 +1,35 @@
+<div class="main">
+    <div class="wrapper">
+        <form (ngSubmit)="onLisa(tooteLisamiseVorm)" #tooteLisamiseVorm="ngForm">
+            <div class="input">
+                <label>Nimetus:</label><br>
+                <input ngModel name="nimi" type="text" required>
+            </div>
+    
+            <div class="input">
+                <label>Hind:</label><br>
+                <input ngModel name="hind" type="number" required>
+            </div>
+    
+            <div class="input">
+                <label>Toote pilt:</label><br>
+                <input ngModel name="pilt" type="text">
+            </div>
+    
+            <div class="input" class="aktiivne">
+                <label>Aktiivne:</label><br>
+                <input ngModel name="aktiivne" type="checkbox">
+            </div>
+    
+            <div class="button-container">
+                <button mat-flat-button>INFO</button>
+                <button mat-flat-button [disabled]="tooteLisamiseVorm.invalid" color="secondary">Lisa toode</button>
+            </div>
+    
+
+        </form>
+    </div>
+</div>
+
+
+  

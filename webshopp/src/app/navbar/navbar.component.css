@@ -1,0 +1,27 @@
+img {
+    height: 50px;
+}
+
+.lang-img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.container-fluid {
+    position: relative;
+}
+
+.navbar-nav {
+    gap: 10px;
+    margin-right: 0;
+}
+
+.lang-box {
+    position: absolute;
+    right: 100px;
+    top:15px;
+    bottom: auto;
+    display: flex;
+    gap: 10px;
+}
