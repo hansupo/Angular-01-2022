@@ -9,5 +9,28 @@
         "cart-button": "Cart",
         "lang-en": "English",
         "lang-ee": "Estonian"
+    },
+
+    "admin": {
+        "nav-add": "Add product",
+        "nav-look": "See products",
+        "nav-category":"Edit categories",
+        "edit-button": "Edit",
+        "delete-button": "Delete",
+        "add-button": "Add"
+    },
+
+    "cart": {
+        "total": "Cart total",
+        "cart-empty": "Cart is empty",
+        "product-total": "Total",
+        "pay": "Buy"
+    },
+
+    "single": {
+        "product-name": "Product name: ",
+        "product-category": "Product category: ",
+        "product-price": "Product price: ",
+        "product-description": "Product description: "
     }
 }

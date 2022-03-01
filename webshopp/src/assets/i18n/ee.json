@@ -9,5 +9,28 @@
         "cart-button": "Ostukorv",
         "lang-en": "Inglise keel",
         "lang-ee": "Eesti keel"
+    },
+
+    "admin": {
+        "nav-add": "Lisa toode",
+        "nav-look": "Vaata tooteid",
+        "nav-category":"Halda kategooriaid",
+        "edit-button": "Muuda",
+        "delete-button": "Kustuta",
+        "add-button": "Lisa"
+    },
+
+    "cart": {
+        "total": "Ostukorv kokku",
+        "cart-empty": "Ostukorv on tühi",
+        "product-total": "Kokku",
+        "pay": "Maksma"
+    },
+
+    "single": {
+        "product-name": "Toote nimetus: ",
+        "product-category": "Toote kategooria: ",
+        "product-price": "Toote hind: ",
+        "product-description": "Toote kirjeldus: "
     }
 }

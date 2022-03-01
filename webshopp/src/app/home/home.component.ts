@@ -20,17 +20,35 @@ export class HomeComponent implements OnInit {
       const newArray = [];
       for (const key in res) {
         newArray.push(res[key]);
-
       }
 
       this.products = newArray
+
+      // const paymentDone = false
+      // sessionStorage.setItem("pay-done", JSON.stringify(paymentDone));
       
     });
   }
 
+  onSortNameAsc() {
+    this.products.sort((a,b) => a.name.localeCompare(b.name));
+  }
+
+  onSortNameDesc() {
+    this.products.sort((a,b) => b.name.localeCompare(a.name));
+  }
+
+  onSortPriceAsc() {
+    this.products.sort((a,b) => a.price - b.price);
+  }
+
+  onSortPriceDesc() {
+    this.products.sort((a,b) => b.price - a.price);
+  }
+
 
   onAddToCart(product: Product): void {
-    console.log(product);
+
 
     const cartProductsLS = sessionStorage.getItem("cart");
     if (cartProductsLS) {

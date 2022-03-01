@@ -1,10 +1,29 @@
-<div *ngFor="let product of products">
-    <div>{{ product.cartProduct.name }}</div>
-    <div>{{ product.cartProduct.price }}€/tk</div>
-    <button class="btn btn-primary" (click)="onDecreaseQuantity(product)">-</button>
-    <div>{{ product.quantity }}tk</div>
-    <button class="btn btn-primary" (click)="onIncreaseQuantity(product)">+</button>
-    <div>Kokku: {{ product.cartProduct.price * product.quantity }}€</div>
-    <button class="btn btn-primary" (click)="onRemoveFromCart(product)">X</button>
-    <br><br>
+<div class="container">
+    <div class="wrapper" *ngIf="products.length !== 0">
+        <div class="product-wrapper" *ngFor="let product of products">
+            <div class="one">
+                <div class="name">{{ product.cartProduct.name }}</div>
+                <div class="price">{{ product.cartProduct.price | productPrice }}/tk</div>
+            </div>
+            <div class="two">
+                <button class="btn btn-warning" (click)="onDecreaseQuantity(product)">-</button>
+                <div class="quantity">{{ product.quantity }}tk</div>
+                <button class="btn btn-warning" (click)="onIncreaseQuantity(product)">+</button>
+                <div class="product-total">{{ product.cartProduct.price * product.quantity | productPrice }}</div>
+                <button class="btn btn-danger" (click)="onRemoveFromCart(product)">X</button>
+            </div>
+        </div>
+        <div class="cart-total">
+            <div>{{"cart.total" | translate}} {{totalPrice | productPrice}}</div>
+            <button class="btn btn-success" (click)="onPay()">{{"cart.pay" | translate}}</button>
+        </div>
+    </div>
+    <div *ngIf="products.length === 0">
+        <div class="cart-empty" *ngIf="products.length === 0 && !paymentDone">{{"cart.cart-empty" | translate}}</div>
+        <div class="cart-empty" *ngIf="paymentDone && products.length === 0">Payment successful!</div>
+        <a routerLink="" type="link">Browse more products</a>
+    </div>
 </div>
+
+
+

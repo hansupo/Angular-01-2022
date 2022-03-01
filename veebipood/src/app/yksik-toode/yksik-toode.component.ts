@@ -31,6 +31,8 @@ export class YksikToodeComponent implements OnInit {
     const tootedLocalStoragest = localStorage.getItem("tooted");
     if (tootedLocalStoragest) {
       tooted = JSON.parse(tootedLocalStoragest)
+      console.log(tooted);
+      
     }
 
     this.toode = tooted.find(element =>

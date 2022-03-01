@@ -33,7 +33,7 @@ export class MuudaToodeComponent implements OnInit {
 
           this.tooteId = this.tooted.indexOf(toode);
 
-         this.tooteMuutmiseVorm = new FormGroup({
+          this.tooteMuutmiseVorm = new FormGroup({
            nimi: new FormControl(toode.nimi),
            hind: new FormControl(toode.hind),
            aktiivne: new FormControl(toode.aktiivne)

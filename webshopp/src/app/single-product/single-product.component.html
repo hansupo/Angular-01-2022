@@ -1,1 +1,20 @@
-<p>single-product works!</p>
+<div class="container">
+    <div class="wrapper">
+        <img src="{{ product.imgSrc }}" alt="">
+        <div class="product-info">
+            <div>
+                <div class="name">{{product.name | titlecase}}</div>
+                <div>ID: {{product.id}}</div>
+                <div>{{"single.product-category" | translate}}{{product.category | titlecase}}</div>
+                <div class="description">
+                    <div>{{"single.product-description" | translate}}</div>
+                    <div>{{product.description}}</div>
+                </div>
+            </div>
+            <div class="buy-card">
+                <div class="price">{{"single.product-price" | translate}}{{product.price | productPrice}}</div>
+                <button class="btn btn-dark" (click)="onAddToCart(product)">{{"home.add-cart-button" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<p>people works!</p>
+
+<div>
+    <input [(ngModel)]="searchedItem" placeholder="Otsi nime/sünniaastat/riigikoodi" (keyup)="onSearchPeople()" type="text">
+</div><br>
+
+<div *ngFor="let person of people">
+    <div>{{person.name | shorten:10 | titlecase}}</div>
+    <div>{{2022 - person.age}}</div>
+    <div>{{person.countrycode | countrycode}}</div>
+    <br>
+</div>
+
+<br>
+
+<!-- <div class="human" (click)="onFindIndex(peop)" *ngFor="let peop of people">
+    <app-people-details [human]="peop"></app-people-details>
+</div>
+
+<input 
+type="text"
+class="search-bar"
+[(ngModel)]="searchedItem"
+(keyup)="onSearch"
+placeholder="Otsi nime alusel">
+<br><br> -->
+

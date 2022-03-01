@@ -1,11 +1,38 @@
-<div *ngFor="let product of products">
-    <div>{{product.id}}</div>
-    <div>{{product.name}}</div>
-    <div>{{product.price}}</div>
-    <div>{{product.description}}</div>
-    <div>{{product.category}}</div>
-    <img src="{{ product.imgSrc }}" alt="">
-    <br>
-    <button class="btn btn-dark" (click)="onDeleteProduct(product)">{{"admin.delete-button" | translate}}</button>
-    <br><br>
+
+<div class="container">
+    <div>
+        <input [(ngModel)]="searchedProduct" placeholder="Otsi tooteid" (keyup)="onSearchProducts()" type="text">
+    </div><br>
+
+    <div>
+        <input type="range" min="0" max="15" value="5" [(ngModel)]="descriptionWords">
+    </div><br>
+
+    <div class="product wrapper" *ngFor="let product of products">
+            <img src="{{ product.imgSrc }}" alt="">
+            <div class="product-info">
+                <div class="info-element"><span>Toote ID: </span>{{product.id}}</div>
+                <div class="info-element"><span>Toote nimetus: </span>{{product.name}}</div>
+                <div class="info-element"><span>Toote hind: </span>{{product.price | productPrice}}</div>
+                <div class="info-element"><span>Toote kirjeldus: </span>{{product.description | wordCount: descriptionWords}}</div>
+                <div class="info-element"><span>Toote kategooria: </span>{{product.category}}</div>
+            </div>
+        <br>
+        <div class="button-container">
+            <button 
+            class="btn btn-dark"
+            routerLink="/admin/muuda-toode/{{ product.id + '-' + product.name.toLowerCase().replace(' ', '-').replace(' ', '-') }}"
+            >{{"admin.edit-button" | translate}}
+        </button>
+        <button 
+            class="btn btn-dark" 
+            (click)="onDeleteProduct(product)"
+            >{{"admin.delete-button" | translate}}
+         </button>
+        </div>
+        <br><br>
+    </div>
 </div>
+
+<lib-toastify-toast-container></lib-toastify-toast-container>
+

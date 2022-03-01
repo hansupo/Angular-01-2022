@@ -1,8 +1,37 @@
-<div *ngFor="let product of products">
-    <div>{{product.name}}</div>
-    <div>{{product.price}}</div>
-    <img src="{{ product.imgSrc }}" alt="">
-    <br>
-    <button class="btn btn-dark" (click)="onAddToCart(product)">{{"home.add-cart-button" | translate}}</button>
-    <br>
+
+
+<div class="container">
+    <!-- <div class="dropdown">
+        <span class="btn btn-secondary dropdown-toggle">Sorteeri</span>
+        <div class="dropdown-content">
+            <a class="dropdown-item" type="button" (click)="onSortNameAsc()">Sorteeri A-Z</a><br>
+            <a class="dropdown-item" type="button" (click)="onSortNameDesc()">Sorteeri Z-A</a><br>
+            <a class="dropdown-item" type="button" (click)="onSortPriceAsc()">Sorteeri soodsamast</a><br>
+            <a class="dropdown-item" type="button" (click)="onSortPriceDesc()">Sorteeri kallimast</a>
+        </div>
+    </div> -->
+
+    <div class="sort">
+        <div class="sort-button" type="button">Sorteeri</div>
+        <div class="sort-content">
+            <div class="sort-element" (click)="onSortNameAsc()">Sorteeri A-Z</div>
+            <div class="sort-element" (click)="onSortNameDesc()">Sorteeri Z-A</div>
+            <div class="sort-element" (click)="onSortPriceAsc()">Sorteeri soodsamast</div>
+            <div class="sort-element" (click)="onSortPriceDesc()">Sorteeri kallimast</div>
+        </div>
+    </div>
+
+    <div class="wrapper" *ngFor="let product of products">
+        <img src="{{ product.imgSrc }}" alt="" routerLink="/toode/{{ product.id + '-' + product.name.toLowerCase().replace(' ', '-').replace(' ', '-') }}">
+        <div class="info-card">
+            <div routerLink="/toode/{{ product.id + '-' + product.name.toLowerCase().replace(' ', '-').replace(' ', '-') }}" class="name">{{product.name | titlecase}}</div>
+            <div class="descript">{{product.description}}</div>
+        </div>
+        <div class="buy-card">
+            <div class="price-description">{{"single.product-price" | translate}}</div>
+            <div class="price">{{product.price | productPrice}}</div>
+            <button class="btn btn-dark" (click)="onAddToCart(product)">{{"home.add-cart-button" | translate}}</button>
+        </div>
+    </div>
 </div>
+

@@ -12,16 +12,15 @@ import { SingleProductComponent } from './single-product/single-product.componen
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "ostukorv", component: CartComponent},
-  {path: "toode", component: SingleProductComponent},
   {path: "admin", children: [
     {path: "", component: AdminHomeComponent},
     {path: "lisa-toode", component: AddProductComponent},
-    {path: "muuda-toode", component: EditProductComponent},
+    {path: "muuda-toode/:productName", component: EditProductComponent},
     {path: "vaata-tooteid", component: ViewProductsComponent},
     {path: "kategooria", component: CategoryComponent},
 
   ] },
-
+  {path: "toode/:productName", component: SingleProductComponent},
 ];
 
 @NgModule({

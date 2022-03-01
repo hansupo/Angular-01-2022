@@ -14,9 +14,12 @@ import { AddProductComponent } from './admin/add-product/add-product.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryComponent } from './admin/category/category.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { AngularToastifyModule, ToastService } from 'angular-toastify';
+import { ProductPricePipe } from './pipes/product-price.pipe';
+import { WordCountPipe } from './pipes/word-count.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { SingleProductComponent } from './single-product/single-product.componen
     AdminHomeComponent,
     ViewProductsComponent,
     CategoryComponent,
-    SingleProductComponent
+    SingleProductComponent,
+    ProductPricePipe,
+    WordCountPipe
   ],
   imports: [
     BrowserModule,
@@ -42,9 +47,11 @@ import { SingleProductComponent } from './single-product/single-product.componen
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         }
-    })
+    }),
+    AngularToastifyModule, // <lib-toastify-toast-container>
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ToastService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

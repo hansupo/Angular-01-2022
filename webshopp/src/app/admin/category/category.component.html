@@ -1,1 +1,17 @@
-<p>category works!</p>
+<div class="container">
+
+        <form class="wrapper" (ngSubmit)="onSubmit(addCategoryForm)" #addCategoryForm="ngForm">
+            <label for="">Kategooria nimetus</label><br>
+            <input ngModel name="name" type="text" required><br>
+            <button class="btn btn-primary" [disabled]="addCategoryForm.invalid">{{"admin.add-button" | translate}}</button>
+        </form><br>
+        
+        <div class="wrapper" *ngFor="let category of categories">
+            <div>{{category.name}}</div>
+            <br>
+            <button class="btn btn-dark" (click)="onDeleteCategory(category)">{{"admin.delete-button" | translate}}</button>
+        </div>
+
+</div>
+
+<lib-toastify-toast-container></lib-toastify-toast-container>

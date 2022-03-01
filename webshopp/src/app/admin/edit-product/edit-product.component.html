@@ -1,1 +1,65 @@
-<p>edit-product works!</p>
+<div class="container">
+    <h2 class="heading wrapper">Muuda toodet</h2>
+    <div *ngIf="product" class="wrapper">
+        <form *ngIf="product" (ngSubmit)="onSubmit()" [formGroup]="changeProductForm">
+            <label for="">ID</label>
+            <span class="not-unique" *ngIf="idEntered && idEntered.toString().length !== 8"> - ei ole kaheksa tähemärki!</span>
+            <span class="not-unique" *ngIf="idEntered && idEntered.toString().length === 8 && buttonDisabled"> - ei ole unikaalne!</span>
+            <span class="unique" *ngIf="idEntered && idEntered.toString().length === 8 && !buttonDisabled"> - sobib!</span>
+            <br>
+            <input 
+                formControlName="id"
+                placeholder="Toote kaheksakohaline unikaalne kood" 
+                (keyup)="onCheckUniqueness()" 
+                [(ngModel)]="idEntered"
+                min="10000000"
+                max="99999999"
+         
+                type="number" 
+                required> <br>
+            <label for="">Nimetus</label> <br>
+            <input 
+                placeholder="Toote avalehe nimetus" 
+                formControlName="name" 
+                type="text" 
+                required> <br>
+            <label for="">Hind</label> <br>
+            <input 
+                placeholder="Toote hind" 
+                formControlName="price" 
+                type="number" 
+                required> <br>
+            <label for="">Kirjeldus</label> <br>
+            <input 
+                placeholder="Toote pikk kirjeldus" 
+                formControlName="description" 
+                type="text" 
+                required> <br>
+            <label for="">Pildi URL</label> <br>
+            <input 
+                placeholder="Pildi URL aadress .jpg või .png lõpuga" 
+                formControlName="imgSrc" 
+                type="text" 
+                required> <br>
+            <label for="">Kategooria</label> <br>
+            <select formControlName="category">
+                <option value="" disabled selected>Vali katekooria</option>
+                <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+        
+            </select> 
+            <br>
+            <!-- <input placeholder="Toote kategooria" ngModel name="category" type="text" required> <br> -->
+            <label for="">Kas aktiivne</label>
+            <input class="checkbox" formControlName="isActive" type="checkbox"> <br>
+
+        </form>
+        <div class="rightside" *ngIf="changeProductForm.value.imgSrc">
+            <img  src="{{changeProductForm.value.imgSrc}}" alt="">
+            <button (click)="onSubmit()"
+            class="btn btn-primary" [disabled]="changeProductForm.invalid || buttonDisabled">Muuda toodet
+            </button>
+        </div>
+    </div>
+</div>
+
+<lib-toastify-toast-container></lib-toastify-toast-container>

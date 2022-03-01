@@ -1,0 +1,50 @@
+.heading {
+    padding: 1rem;
+}
+
+.not-unique {
+    color: rgb(255, 121, 121);
+}
+
+.wrapper {
+    display: flex;
+}
+
+img {
+    object-fit:cover;
+    width: 100vh;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+form {
+    min-width: 50%;
+    background-color: rgba(255, 255, 255, 0.11);
+    padding: 1rem;
+}
+
+input {
+    min-width: 100%;
+}
+
+select {
+    min-width: 100%;
+}
+
+label {
+    padding: 5px;
+}
+
+.checkbox {
+    min-width: unset;
+}
+
+.rightside {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1rem;
+    gap: 1rem;
+}
+
