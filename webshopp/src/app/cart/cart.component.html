@@ -6,11 +6,13 @@
                 <div class="price">{{ product.cartProduct.price | productPrice }}/tk</div>
             </div>
             <div class="two">
-                <button class="btn btn-warning" (click)="onDecreaseQuantity(product)">-</button>
+
+                <img src="/assets/minus-button.png" (click)="onDecreaseQuantity(product)">
                 <div class="quantity">{{ product.quantity }}tk</div>
-                <button class="btn btn-warning" (click)="onIncreaseQuantity(product)">+</button>
+                <img src="/assets/plus.png" (click)="onIncreaseQuantity(product)">
                 <div class="product-total">{{ product.cartProduct.price * product.quantity | productPrice }}</div>
-                <button class="btn btn-danger" (click)="onRemoveFromCart(product)">X</button>
+
+                <img src="/assets/delete.png" (click)="onRemoveFromCart(product)">
             </div>
         </div>
         <div class="cart-total">
@@ -24,6 +26,48 @@
         <a routerLink="" type="link">Browse more products</a>
     </div>
 </div>
+
+
+
+<div *ngIf="selectedPMachine === ''">
+    <select (change)="showParcelMachinesByCounty()" [(ngModel)]="selectedCounty">
+        <option value="" disabled>Maakond</option>
+        <option *ngFor="let county of originalparcelMachines | unique" value="{{ county }}">
+            {{ county }}
+        </option>
+    </select>
+    
+    <select [(ngModel)]="selectedPMachine">
+        <option *ngFor="let pMachine of parcelMachines" value="{{ pMachine.NAME }}">
+            {{ pMachine.NAME }}
+        </option>
+    </select>
+</div>
+
+<div style="color: white" *ngIf="selectedPMachine">
+    Maakond: {{ selectedCounty }}
+    Valitud pakiautomaat: {{ selectedPMachine }}
+    <button (click)="deleteSelectedPMAchine()">X</button>
+</div>
+
+
+<!-- <div style="color:white">
+    
+    <div class="cart-item" *ngFor="let product of products">
+        <div class="cart-item-name">{{ product.cartProduct.name }}</div>
+        <div class="cart-item-price">{{ product.cartProduct.price | productPrice }}/tk</div>
+        <button class="btn btn-warning" (click)="onDecreaseQuantity(product)">-</button>
+        <div class="cart-item-quantity">{{ product.quantity }}tk</div>
+        <button class="btn btn-warning" (click)="onIncreaseQuantity(product)">+</button>
+        <div class="cart-item-total">{{ product.cartProduct.price * product.quantity | productPrice }}</div>
+        <img src="assets/x-button.svg" (click)="onRemoveFromCart(product)">
+        
+    
+    </div>
+        <div>{{"cart.total" | translate}} {{totalPrice | productPrice}}</div>
+        <button class="btn btn-success" (click)="onPay()">{{"cart.pay" | translate}}</button>
+</div> -->
+
 
 
 

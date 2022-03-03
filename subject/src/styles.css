@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+}
+
+
+form {
+    text-align: center;
+    margin-top: 100px;
+}
+
+
+
+form input {
+    border-radius: 10px;
+    outline: none;
+    text-align: center;
+}
+
+form button {
+    margin-top: 10px;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.274);
+    padding: 20px 40px;
+}
+
+form button:hover {
+    text-decoration: underline;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.644);
+
+}

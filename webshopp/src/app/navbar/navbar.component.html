@@ -9,6 +9,7 @@
 
             <a class="nav-link" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
             <a class="nav-link" routerLink="/ostukorv">{{ "navbar.cart-button" | translate}}</a>
+            <span style="color: white"> {{ sumOfCart | productPrice }}</span>
             <div class="lang-box">
               <img class="lang-img" (click)="useLanguage('en')" src="assets/english.png" alt="">
               <img class="lang-img" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">

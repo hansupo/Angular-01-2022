@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-products.model';
 import { Product } from '../models/product.model';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,10 +12,15 @@ import { Product } from '../models/product.model';
 export class CartComponent implements OnInit {
 
   products: CartProduct[] = [];
-  totalPrice = 0
-  paymentDone :boolean = false
+  totalPrice = 0;
+  paymentDone :boolean = false;
+  parcelMachines: any[] = [];
+  originalparcelMachines: any[] = [];
+  selectedCounty: string = "";
+  selectedPMachine: string = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     const productsLS = sessionStorage.getItem("cart");
@@ -28,7 +34,21 @@ export class CartComponent implements OnInit {
     }
     if (paymentDone && this.products.length !== 0) {this.paymentDone = false}
 
-    this.onCalculateTotal()
+    this.onCalculateTotal();
+    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(res => {
+        this.originalparcelMachines = res.filter(element => element.A0_NAME === "EE");
+        this.parcelMachines = this.originalparcelMachines
+    })
+  }
+
+  showParcelMachinesByCounty() {
+    this.parcelMachines = this.originalparcelMachines.filter(element => 
+                                element.A1_NAME === this.selectedCounty);
+  }
+
+
+  deleteSelectedPMAchine() {
+    this.selectedPMachine = "";
   }
 
   onDecreaseQuantity(product: CartProduct) {
@@ -59,6 +79,7 @@ export class CartComponent implements OnInit {
   private onCalculateTotal() {
     this.totalPrice = 0
     this.products.forEach(element => this.totalPrice = this.totalPrice + element.cartProduct.price * element.quantity )
+    this.cartService.cartChanged.next(this.products);
   }
 
   onEmptyCart() {

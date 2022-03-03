@@ -1,0 +1,14 @@
+.answer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 40px;
+    color: white;
+    font-size: 24px;
+}
+
+.answer div {
+    padding: 10px;
+    background-color: brown;
+    text-align: center;
+}

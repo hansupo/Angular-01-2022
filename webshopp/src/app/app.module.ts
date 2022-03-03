@@ -20,6 +20,8 @@ import { SingleProductComponent } from './single-product/single-product.componen
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
 import { ProductPricePipe } from './pipes/product-price.pipe';
 import { WordCountPipe } from './pipes/word-count.pipe';
+import { UniquePipe } from './pipes/unique.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { WordCountPipe } from './pipes/word-count.pipe';
     CategoryComponent,
     SingleProductComponent,
     ProductPricePipe,
-    WordCountPipe
+    WordCountPipe,
+    UniquePipe
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { WordCountPipe } from './pipes/word-count.pipe';
         }
     }),
     AngularToastifyModule, // <lib-toastify-toast-container>
-    ReactiveFormsModule
+    ReactiveFormsModule, NgbModule
   ],
   providers: [ToastService],
   bootstrap: [AppComponent]
