@@ -1,0 +1,9 @@
+<div> {{ error }}</div>
+
+<form (ngSubmit)="onSignUp(form)" #form="ngForm">
+    <label>E-mail</label>
+    <input ngModel name="email" type="text">
+    <label>Password</label>
+    <input ngModel name="password" type="password">
+    <button>Registreeru</button>
+</form>

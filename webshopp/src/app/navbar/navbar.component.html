@@ -7,14 +7,19 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
 
-            <a class="nav-link" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
-            <a class="nav-link" routerLink="/ostukorv">{{ "navbar.cart-button" | translate}}</a>
-            <span style="color: white"> {{ sumOfCart | productPrice }}</span>
-            <div class="lang-box">
+            <a *ngIf="isLoggedIn" class="nav-link" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
+
+            <!-- <div class="lang-box">
               <img class="lang-img" (click)="useLanguage('en')" src="assets/english.png" alt="">
               <img class="lang-img" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
-            </div>
+            </div> -->
         </div>
       </div>
+      <img class="lang-img" (click)="useLanguage('en')" src="assets/english.png" alt="">
+      <img class="lang-img" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
+      <button *ngIf="!isLoggedIn" routerLink="logi-sisse">Logi sisse</button>
+      <button *ngIf="isLoggedIn" (click)="onLogOut()" routerLink="logi-sisse">Logi välja</button>
+      <a class="nav-link" routerLink="/ostukorv">{{ "navbar.cart-button" | translate}}</a>
+      <span style="color: white"> {{ sumOfCart | productPrice }}</span>
     </div>
   </nav>

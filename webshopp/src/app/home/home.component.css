@@ -7,12 +7,19 @@
 
 .picsum-img-wrapper {
     width: 100%;
-    height: 100%;
+    height: 500px;
+
 }
 
 .picsum-img-wrapper img {
+    object-fit: cover;
     width: 100%;
+    min-height: 100%;
     padding: 0;
+}
+
+.carousel-caption {
+    text-shadow: 0 0 5px black;
 }
 
 /*  */
@@ -44,7 +51,7 @@
     cursor: pointer;
 }
 
-.sort-content :nth-child(4) {
+.sort-content :last-child {
     border-right: none;
 }
 

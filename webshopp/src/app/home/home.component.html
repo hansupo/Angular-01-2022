@@ -1,45 +1,55 @@
+
+
 <div class="container">
-    
-    <ngb-carousel class="carousel-wrapper" *ngIf="images">
-        <ng-template ngbSlide>
+
+
+      <!-- carousel -->
+
+      <ngb-carousel class="carousel-wrapper" *ngIf="gallery">
+        <ng-template ngbSlide *ngFor="let picture of gallery">
           <div class="picsum-img-wrapper">
-            <img [src]="images[0]" alt="Random first slide">
+            <img src="{{ picture.download_url }}" alt="{{ picture.download_url }}">
           </div>
           <div class="carousel-caption">
-            <h3>10 seconds between slides...</h3>
-            <p>This carousel uses customized default values.</p>
-          </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="images[1]" alt="Random second slide">
-          </div>
-          <div class="carousel-caption">
-            <h3>No mouse events...</h3>
-            <p>This carousel doesn't pause or resume on mouse events</p>
-          </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="images[2]"  alt="Random third slide">
-          </div>
-          <div class="carousel-caption">
-            <h3>No keyboard...</h3>
-            <p>This carousel uses customized default values.</p>
-          </div>
-        </ng-template>
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="images[3]" alt="Random fourth slide">
-          </div>
-          <div class="carousel-caption">
-            <h3>And no wrap after last slide.</h3>
-            <p>This carousel uses customized default values.</p>
+            <h3>{{ picture.author }}</h3>
+            <p>Author</p>
           </div>
         </ng-template>
       </ngb-carousel>
 
+      <!-- category select -->
 
+    <div>
+        <div (click)="onSelectCategory('all')">Kõik kategooriad</div>
+        <div *ngFor="let category of categories" (click)="onSelectCategory(category)">
+          {{ category }}
+        </div>
+    </div> <br>
+
+      <!-- category select testing -->
+
+      
+        
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Kategooria</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="onSelectCategory('all')">Kõik kategooriad</button>
+          <button ngbDropdownItem *ngFor="let category of categories" (click)="onSelectCategory(category)">{{ category }}</button>
+        </div>
+      </div>
+           
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Sorteeri</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="onSortNameAsc()">Sorteeri A-Z</button>
+          <button ngbDropdownItem (click)="onSortNameDesc()">Sorteeri Z-A</button>
+          <button ngbDropdownItem (click)="onSortPriceAsc()">Sorteeri soodsamast</button>
+          <button ngbDropdownItem (click)="onSortPriceDesc()">Sorteeri kallimast</button>
+        </div>
+      </div>
+          
+
+      <!-- sort -->
 
     <div class="sort">
         <div class="sort-button" type="button">Sorteeri</div>
@@ -50,6 +60,8 @@
             <div class="sort-element" (click)="onSortPriceDesc()">Sorteeri kallimast</div>
         </div>
     </div>
+
+      <!-- products ngFor -->
 
     <div class="wrapper" *ngFor="let product of products">
         <img src="{{ product.imgSrc }}" alt="" routerLink="/toode/{{ product.id + '-' + product.name.toLowerCase().replace(' ', '-').replace(' ', '-') }}">

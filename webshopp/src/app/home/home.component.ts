@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-products.model';
 import { Product } from '../models/product.model';
+import { UniquePipe } from '../pipes/unique.pipe';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -12,11 +13,17 @@ import { CartService } from '../services/cart.service';
 export class HomeComponent implements OnInit {
 
   images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  gallery: any[] = [];
 
   products: Product[] = [];
+  originalProducts: Product[] = [];
+
+  categories: string[] = [];
+  selectedCategory = "";
 
   constructor(private http: HttpClient, 
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private uniquePipe: UniquePipe) { }
 
   ngOnInit(): void {
     this.http.get<Product[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(res => {
@@ -25,13 +32,34 @@ export class HomeComponent implements OnInit {
       for (const key in res) {
         newArray.push(res[key]);
       }
+      this.originalProducts = newArray
+      this.products = this.originalProducts.slice();
 
-      this.products = newArray
+      // this.categories = this.originalProducts.map(element => element.category)
+      this.categories = this.uniquePipe.transform(this.originalProducts, "category")
 
-      // const paymentDone = false
-      // sessionStorage.setItem("pay-done", JSON.stringify(paymentDone));
+      const paymentDone = false
+      sessionStorage.setItem("pay-done", JSON.stringify(paymentDone));
       
     });
+
+    this.http.get<any[]>("https://picsum.photos/v2/list").subscribe(res =>{ 
+    this.gallery = res;
+    
+    })
+    
+    
+  }
+
+  onSelectCategory(category: string) {
+    this.selectedCategory = category;
+    if (category == 'all') {
+      this.products = this.originalProducts.slice();
+    } else {
+    this.products = this.originalProducts.filter(element => element.category == category)
+    }
+    console.log(category);
+    
   }
 
   onSortNameAsc() {
