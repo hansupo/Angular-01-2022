@@ -3,77 +3,47 @@
 <div class="container">
 
 
+
       <!-- carousel -->
 
-      <ngb-carousel class="carousel-wrapper" *ngIf="gallery">
-        <ng-template ngbSlide *ngFor="let picture of gallery">
-          <div class="picsum-img-wrapper">
-            <img src="{{ picture.download_url }}" alt="{{ picture.download_url }}">
-          </div>
-          <div class="carousel-caption">
-            <h3>{{ picture.author }}</h3>
-            <p>Author</p>
-          </div>
-        </ng-template>
-      </ngb-carousel>
+      <app-carousel></app-carousel>
 
+
+      <div class="sort">
       <!-- category select -->
-
-    <div>
-        <div (click)="onSelectCategory('all')">Kõik kategooriad</div>
-        <div *ngFor="let category of categories" (click)="onSelectCategory(category)">
-          {{ category }}
-        </div>
-    </div> <br>
-
-      <!-- category select testing -->
-
-      
-        
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Kategooria</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem (click)="onSelectCategory('all')">Kõik kategooriad</button>
-          <button ngbDropdownItem *ngFor="let category of categories" (click)="onSelectCategory(category)">{{ category }}</button>
+          <button ngbDropdownItem *ngFor="let category of categories" (click)="onSelectCategory(category)">{{ category | titlecase }}</button>
         </div>
       </div>
-           
-      <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Sorteeri</button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem (click)="onSortNameAsc()">Sorteeri A-Z</button>
-          <button ngbDropdownItem (click)="onSortNameDesc()">Sorteeri Z-A</button>
-          <button ngbDropdownItem (click)="onSortPriceAsc()">Sorteeri soodsamast</button>
-          <button ngbDropdownItem (click)="onSortPriceDesc()">Sorteeri kallimast</button>
-        </div>
-      </div>
-          
 
-      <!-- sort -->
+      <!-- sort select -->    
 
-    <div class="sort">
-        <div class="sort-button" type="button">Sorteeri</div>
-        <div class="sort-content">
-            <div class="sort-element" (click)="onSortNameAsc()">Sorteeri A-Z</div>
-            <div class="sort-element" (click)="onSortNameDesc()">Sorteeri Z-A</div>
-            <div class="sort-element" (click)="onSortPriceAsc()">Sorteeri soodsamast</div>
-            <div class="sort-element" (click)="onSortPriceDesc()">Sorteeri kallimast</div>
-        </div>
-    </div>
+      <app-sort-buttons [products]="products"></app-sort-buttons>
+
+      <!-- pagination demo -->
+
+      <!-- <p>Default pagination:</p>
+      <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination">
+
+      </ngb-pagination>
+
+      <hr>
+
+      <pre>Current page: {{page}}</pre> -->
+
+      
 
       <!-- products ngFor -->
 
-    <div class="wrapper" *ngFor="let product of products">
-        <img src="{{ product.imgSrc }}" alt="" routerLink="/toode/{{ product.id + '-' + product.name.toLowerCase().replace(' ', '-').replace(' ', '-') }}">
-        <div class="info-card">
-            <div routerLink="/toode/{{ product.id + '-' + product.name.toLowerCase().replace(' ', '-').replace(' ', '-') }}" class="name">{{product.name | titlecase}}</div>
-            <div class="descript">{{product.description}}</div>
-        </div>
-        <div class="buy-card">
-            <div class="price-description">{{"single.product-price" | translate}}</div>
-            <div class="price">{{product.price | productPrice}}</div>
-            <button class="btn btn-dark" (click)="onAddToCart(product)">{{"home.add-cart-button" | translate}}</button>
-        </div>
+    <div *ngFor="let product of products">
+      <app-product-card 
+      *ngIf="product.isActive || isLoggedIn" 
+      [product]="product"
+      [loggedIn] = "isLoggedIn"
+      ></app-product-card>
     </div>
 </div>
 

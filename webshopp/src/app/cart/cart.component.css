@@ -81,6 +81,12 @@ img:hover {
     transition: 250ms;
 }
 
+.bi:hover {
+    fill: rgba(128, 128, 128, 0.459);
+    transition: 250ms;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     .product-wrapper {
         flex-wrap: wrap;

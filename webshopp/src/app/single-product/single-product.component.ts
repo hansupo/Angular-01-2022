@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-products.model';
 import { Product } from '../models/product.model';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-single-product',
@@ -13,12 +14,12 @@ export class SingleProductComponent implements OnInit {
   product!: any;
   products: Product[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     const productID = window.location.href.split("toode/")[1].split("-")[0];
     
-    this.http.get<Product[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(res => {
+    this.productService.getProducts().subscribe(res => {
       this.products = res;
       const newArray = [];
       for (const key in res) {

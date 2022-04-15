@@ -1,0 +1,21 @@
+a {
+    display: inline;
+    min-width: auto;
+}
+
+a:hover {
+    background-color: unset;
+    /* color: #495057; */
+    color: white;
+}
+
+.nav-tabs {
+ border-bottom: none;
+}
+
+.nav {
+    gap: 1rem;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 6rem;
+}

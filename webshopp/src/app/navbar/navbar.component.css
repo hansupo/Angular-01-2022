@@ -1,42 +1,70 @@
-.navbar-light .navbar-nav .nav-link  {
-    color: white;
+/* .navbar {
+padding: 0;
+
+}
+a {
+    text-decoration: none;
 }
 
-.nav-link:hover {
-    text-decoration:overline;
+.navbar-nav {
+    flex: 1;
+    
+}
+
+.nav-link:hover .dropdown-toggle:hover {
+    background-color: red;
 }
 
 .navbar {
     background-color: rgba(255, 255, 255, 0.048);
 }
+.nav-link {
+    padding: 1.5rem 0;
+    width: 20%;
+    justify-content: center;
+    text-align: center;
+}
 
+
+nav > .container {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.btn-log {
+min-width: 10rem;
+padding: auto;
+margin: auto;
+;
+}
 
 img {
-    height: 50px;
+    height: 2rem;
+}
+
+
+.navbar-brand > img {
+    height: 4rem;
 }
 
 .lang-img {
-    height: 30px;
-    width: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 5px;
+    margin: auto;
+    height: 100%;
+    width: auto;
+    max-width: 1rem;
     cursor: pointer;
 }
 
-.container-fluid {
-    position: relative;
-}
+
 
 .navbar-nav {
     gap: 10px;
     margin-right: 0;
-}
-
-.lang-box {
-    position: absolute;
-    right: 100px;
-    top:15px;
-    bottom: auto;
-    display: flex;
-    gap: 10px;
 }
 
 .navbar-light .navbar-toggler-icon {
@@ -44,4 +72,182 @@ img {
     padding: 20px;
     border-radius: 12%;
     fill: white;
+} */
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
 }
+
+.navbar {
+    padding: 1rem;
+    /* background-color: rgba(255, 255, 255, 0.034); */
+}
+
+.navbar-brand > img {
+    height: 4rem;
+}
+
+.navbar-nav > img {
+    height: 2rem;
+    margin: auto 1rem;
+    cursor: pointer;
+    filter: brightness(75%);
+    transition: all 100ms;
+}
+
+.navbar-nav > img:hover {
+    filter: brightness(100%);
+    transition: all 100ms;
+}
+
+.navbar-nav > img:active {
+    outline: 2px solid rgba(128, 128, 128, 0.473);
+    border-radius: 40px;
+}
+
+.container-fluid {
+
+    display: flex;
+    flex: 1;
+    padding: 0;
+    margin: 0 auto;
+
+    
+}
+
+.navbar {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.199);
+}
+
+.navbar-nav {
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+    align-items: center;
+    /* box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.075); */
+
+}
+
+.nav-link {
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+    height: auto;
+    padding: 1rem;
+    min-width: 5rem;
+    max-width: 25%;
+    border-radius: 0.25rem;
+    /* background: rgba(255, 255, 255, 0.034); */
+    /* background: linear-gradient(270deg, rgba(255, 227, 249, 0.096) 0%, rgba(228, 255, 247, 0.075) 100%); */
+ 
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.103);
+}
+
+.nav-link:active {
+    outline: 1px solid rgba(128, 128, 128, 0.473);
+}
+
+.link-container {
+    display: flex;
+    text-align: center;
+    vertical-align: middle;
+    gap: 1rem;
+    flex: 1;
+}
+
+.login {
+    max-width: 10rem;
+    background: rgba(255, 255, 255, 0.034);
+}
+
+.nav-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto 1rem;
+    color: black;
+    background: rgba(255, 255, 255, 0.034);
+    padding: auto 2rem;
+    flex: 0;
+    min-width: auto;
+    max-width: auto;
+    transition: all 200ms;
+    fill: white;
+}
+
+
+.nav-cart-total {
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 0.5rem;
+    min-width: 6rem;
+}
+
+@media screen and (max-width: 992px) {
+
+    .link-container {
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
+    }
+
+    .nav-link {
+        flex: 1;
+        width: 100%;
+        min-width: none;
+        max-width: none;
+        background: rgba(255, 255, 255, 0.034);
+    }
+
+    .navbar-nav > img {
+        float: inline-end;
+    }
+
+    .nav-cart {
+        background: rgb(197, 197, 197);
+    }
+
+    .login {
+        background: rgb(46, 46, 46);
+    }
+
+    .navbar-toggler {
+        padding: 0.5rem 0.7rem;
+    }
+
+    .navbar-collapse {
+        position: relative;
+    }
+
+    .navbar-nav > img {
+        position: absolute;
+        right: 4rem;
+        top: -3.3rem;
+    }
+
+
+
+}
+
+.empty {
+    background-color: rgba(255, 255, 255, 0.425);
+}
+
+.full {
+
+    background-color: rgba(255, 230, 0, 0.644);
+    fill: black;
+}
+
+.full:hover {
+    background-color: rgb(255, 230, 0);
+}
+
+
+

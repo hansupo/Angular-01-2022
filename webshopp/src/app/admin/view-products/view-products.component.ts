@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'angular-toastify';
 import { Product } from 'src/app/models/product.model';
+import { ImageUploadService } from 'src/app/services/image-upload.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-view-products',
@@ -15,10 +17,12 @@ export class ViewProductsComponent implements OnInit {
   searchedProduct: string = "";
   descriptionWords = 15;
 
-  constructor(private http: HttpClient, private _toastService: ToastService) { }
+  constructor(private productService: ProductService,
+    private _toastService: ToastService,
+    private imageUpload: ImageUploadService) { }
 
   ngOnInit(): void {
-    this.http.get<Product[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(res => {
+    this.productService.getProducts().subscribe(res => {
       this.products = res;
       const newArray = [];
       for (const key in res) {
@@ -41,13 +45,17 @@ export class ViewProductsComponent implements OnInit {
   onDeleteProduct(product: Product) {
     const index = this.products.indexOf(product);
     this.products.splice(index,1);
+    this.imageUpload.deletePicture(true); 
 
-    this.http.put(
-      "https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json",
-      this.products).subscribe( () => {
+    this.productService.replaceProducts(this.products).subscribe( () => {
         this._toastService.success("Toode ID-ga " + product.id + " edukalt kustutatud!")
         }
     );
 
+  }
+
+  changeActive(product: Product) {
+    product.isActive = !product.isActive
+    this.productService.replaceProducts(this.products).subscribe();
   }
 }

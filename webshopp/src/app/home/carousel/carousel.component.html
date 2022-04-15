@@ -1,0 +1,11 @@
+<ngb-carousel class="carousel-wrapper" *ngIf="gallery">
+    <ng-template ngbSlide *ngFor="let picture of gallery">
+      <div class="picsum-img-wrapper">
+        <img src="{{ picture.download_url }}" alt="{{ picture.download_url }}">
+      </div>
+      <div class="carousel-caption">
+        <h3>{{ picture.author }}</h3>
+        <p>Author</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>

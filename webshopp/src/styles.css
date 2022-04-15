@@ -6,7 +6,8 @@ input.ng-invalid.ng-touched {
 
 body {
     background: rgb(0,0,68);
-    background: linear-gradient(90deg, rgb(19, 0, 41) 0%, rgb(0, 23, 27) 100%);
+    background: linear-gradient(90deg, rgb(37, 32, 43) 0%, rgb(19, 26, 27) 100%);
+    /* backdrop-filter: grayscale(90%) brightness(400%); */
     height: 100%;
     min-height: 100vh;
 
@@ -24,6 +25,4 @@ body {
 
 }
 
-button:hover {
-    text-decoration:underline;
-}
+

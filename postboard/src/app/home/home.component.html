@@ -1,0 +1,32 @@
+<div class="container">
+
+  <mat-card  *ngFor="let post of postings" class="example-card">
+
+
+
+      <mat-card-header>
+        <img mat-card-avatar class="example-header-image" src="https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg" alt="">
+          <mat-card-title>{{post.title}}</mat-card-title>
+          <mat-card-subtitle>by {{post.username}}</mat-card-subtitle>
+        <button mat-icon-button  aria-label="More"><mat-icon>more_horiz</mat-icon></button>
+      </mat-card-header>
+
+      <img *ngIf="post.pic" mat-card-image src="{{post.pic}}" alt="">
+
+      <mat-card-content>
+        <p>
+          {{post.text}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <div class="post-date">{{post.date}}</div>
+        <button mat-icon-button  aria-label="Like">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <button mat-icon-button  aria-label="Share">
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-card-actions>
+  </mat-card>
+
+</div>

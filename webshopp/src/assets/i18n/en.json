@@ -5,7 +5,7 @@
     },
 
     "navbar": {
-        "admin-button": "Admin view",
+        "admin-button": "Admin",
         "cart-button": "Cart",
         "lang-en": "English",
         "lang-ee": "Estonian"

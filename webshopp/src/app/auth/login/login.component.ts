@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from 'src/app/navbar/navbar.component';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,10 +13,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   isLoading = false;
   error: string = "";
+  closeResult = '';
+  
+  
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    
+    
   ) { }
 
   ngOnInit(): void {
@@ -39,5 +46,11 @@ export class LoginComponent implements OnInit {
       }
     );
     loginForm.reset();
+    
+    
+    
+      
   }
+
+
 }

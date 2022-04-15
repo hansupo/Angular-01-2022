@@ -1,6 +1,51 @@
 <div class="container">
-    <button class="btn btn-primary" routerLink="/admin/lisa-toode">{{"admin.nav-add" | translate}}</button>
-    <button class="btn btn-primary" routerLink="/admin/vaata-tooteid">{{"admin.nav-look" | translate}}</button>
-    <button class="btn btn-primary" routerLink="/admin/kategooria">{{"admin.nav-category" | translate}}</button>
-    <button class="btn btn-primary" routerLink="/admin/registreeru">Registreeru</button>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>Lisa toode</a>
+          <ng-template ngbNavContent><app-add-product></app-add-product></ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Vaata tooteid</a>
+          <ng-template ngbNavContent><app-view-products></app-view-products></ng-template>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink>Halda kategooriaid</a>
+            <ng-template ngbNavContent><app-category></app-category></ng-template>
+          </li>
+          <li ngbNavItem>
+            <a ngbNavLink>Registreeru</a>
+            <ng-template ngbNavContent><app-signup></app-signup></ng-template>
+          </li>
+          <li ngbNavItem>
+            <a ngbNavLink>Võta ühendust</a>
+            <ng-template ngbNavContent>
+                <div>
+                    <form (ngSubmit)="onSend(form)" #form="ngForm">
+                        <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label">Email</label>
+                          <input required type="email" ngModel name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        </div>
+                  
+                        <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label">Pealkiri</label>
+                          <input required type="text" ngModel name="subject" class="form-control" id="exampleFormControlInput1" placeholder="">
+                        </div>
+                  
+                        <div class="mb-3">
+                          <label for="exampleFormControlTextarea1" class="form-label">Sõnumi sisu</label>
+                          <textarea Autosize required type="text" ngModel name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-light">SEND</button>
+                      </form>
+                </div>
+            </ng-template>
+          </li>
+      </ul>
+      <br>
+      <div [ngbNavOutlet]="nav"></div>
 </div>
+
+
+
+
+

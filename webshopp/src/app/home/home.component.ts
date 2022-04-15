@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
-import { CartProduct } from '../models/cart-products.model';
 import { Product } from '../models/product.model';
 import { UniquePipe } from '../pipes/unique.pipe';
+import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-home',
@@ -12,27 +13,28 @@ import { CartService } from '../services/cart.service';
 })
 export class HomeComponent implements OnInit {
 
-  images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  gallery: any[] = [];
-
   products: Product[] = [];
   originalProducts: Product[] = [];
 
   categories: string[] = [];
   selectedCategory = "";
+  page = 4;
+  isLoggedIn = false;
 
-  constructor(private http: HttpClient, 
+  constructor(private productService: ProductService, 
     private cartService: CartService,
-    private uniquePipe: UniquePipe) { }
+    private uniquePipe: UniquePipe,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.http.get<Product[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(res => {
+
+    this.productService.getProducts().subscribe(res => {
       this.products = res;
       const newArray = [];
       for (const key in res) {
         newArray.push(res[key]);
       }
-      this.originalProducts = newArray
+      this.originalProducts = newArray.reverse();
       this.products = this.originalProducts.slice();
 
       // this.categories = this.originalProducts.map(element => element.category)
@@ -40,15 +42,31 @@ export class HomeComponent implements OnInit {
 
       const paymentDone = false
       sessionStorage.setItem("pay-done", JSON.stringify(paymentDone));
+
+      setTimeout(() => {
+        if (sessionStorage['scrollPos']) {
+          window.scrollTo(0, sessionStorage['scrollPos'])
+          sessionStorage['scrollPos'] = 0;
+          }
+      },500
+      ) 
       
     });
 
-    this.http.get<any[]>("https://picsum.photos/v2/list").subscribe(res =>{ 
-    this.gallery = res;
-    
+
+    // sisselogimine
+    this.authService.loggedInChanged.subscribe(() => {
+      this.isLoggedIn = sessionStorage.getItem("userData") !== null
+      console.log(this.isLoggedIn);
     })
+
+
     
     
+  }
+
+  ngAfterViewInit() {
+
   }
 
   onSelectCategory(category: string) {
@@ -62,46 +80,9 @@ export class HomeComponent implements OnInit {
     
   }
 
-  onSortNameAsc() {
-    this.products.sort((a,b) => a.name.localeCompare(b.name));
-  }
-
-  onSortNameDesc() {
-    this.products.sort((a,b) => b.name.localeCompare(a.name));
-  }
-
-  onSortPriceAsc() {
-    this.products.sort((a,b) => a.price - b.price);
-  }
-
-  onSortPriceDesc() {
-    this.products.sort((a,b) => b.price - a.price);
-  }
 
 
-  onAddToCart(product: Product): void {
 
-
-    const cartProductsLS = sessionStorage.getItem("cart");
-    let cartProducts: CartProduct[] = [];
-    if (cartProductsLS) {
-      cartProducts = JSON.parse(cartProductsLS)
-      const index = cartProducts.findIndex(element => element.cartProduct.id === product.id);
-      if (index !== -1) {
-        cartProducts[index].quantity++;
-      } else {
-        cartProducts.push({cartProduct: product, quantity: 1});
-      }
-      // sessionStorage.setItem("cart", JSON.stringify(cartProducts));
-      
-    } else {
-      cartProducts = [{cartProduct: product, quantity: 1}];
-      
-    }
-    sessionStorage.setItem("cart", JSON.stringify(cartProducts));
-    this.cartService.cartChanged.next(cartProducts);
-
-
-  }
+  
 
 }

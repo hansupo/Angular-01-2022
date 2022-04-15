@@ -1,0 +1,12 @@
+
+<!-- <div *ngIf="navContent === 'post' && navContentIsOpen" [ngClass]="{content: navContentIsOpen, contentclose: navContentIsClose}"><app-post></app-post></div> -->
+<!-- <div *ngIf="navContent === 'post' && navContentIsOpen" [ngClass]="{content: navContentIsOpen, contentclose: navContentIsClose}"><router-outlet></router-outlet></div> -->
+<!-- <div *ngIf="navContent === 'menu' && navContentIsOpen" [ngClass]="{content: navContentIsOpen, contentclose: navContentIsClose}"><app-menu></app-menu></div> -->
+
+<div class="nav">
+    <button mat-button routerLink="/" (click)="onScrollTop() > smoothCloseNav()"><mat-icon>home</mat-icon></button>
+    <!-- <button mat-button routerLink="/" (click)="onNavClick('post')" ><img mat-button src="assets/post_p.png" alt=""></button> -->
+    <button mat-button routerLink="/post"><img mat-button src="assets/post_p.png" alt=""></button>
+    <button mat-button (click)="onNavClick('menu')"><mat-icon>menu</mat-icon></button>
+</div>
+

@@ -23,7 +23,7 @@ form {
     padding: 1rem;
 }
 
-input {
+input, textarea {
     min-width: 100%;
 }
 

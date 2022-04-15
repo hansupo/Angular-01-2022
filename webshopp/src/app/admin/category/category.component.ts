@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastService } from 'angular-toastify';
 import { Category } from 'src/app/models/category.model';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-category',
@@ -13,10 +14,11 @@ export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
 
-  constructor(private http: HttpClient, private _toastService: ToastService) { }
+  constructor(private categoryService: CategoryService,
+     private _toastService: ToastService) { }
 
   ngOnInit(): void {
-    this.http.get<Category[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/categories.json").subscribe(res => {
+    this.categoryService.getCategories().subscribe(res => {
       const newArray = [];
       for (const key in res) {
         newArray.push(res[key]);
@@ -27,9 +29,7 @@ export class CategoryComponent implements OnInit {
 
   onSubmit(addCategoryForm: NgForm) {
     if (addCategoryForm.valid) {
-      this.http.post(
-        "https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/categories.json",
-        addCategoryForm.value).subscribe( () => {
+      this.categoryService.addCategory(addCategoryForm.value).subscribe( () => {
           this.categories.push(addCategoryForm.value)
           addCategoryForm.reset();
           this._toastService.success('Kategooria edukalt lisatud');
@@ -41,10 +41,7 @@ export class CategoryComponent implements OnInit {
   onDeleteCategory(category: Category) {
     const index = this.categories.indexOf(category);
     this.categories.splice(index,1);
-
-    this.http.put(
-      "https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/categories.json",
-      this.categories).subscribe( () => {
+    this.categoryService.replaceCategories(this.categories).subscribe( () => {
         this._toastService.success("Kategooria " + category.name + " edukalt kustutatud!")
         }
     );

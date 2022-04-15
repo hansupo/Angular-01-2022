@@ -1,8 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subject } from 'rxjs';
 import { Category } from 'src/app/models/category.model';
 import { Product } from 'src/app/models/product.model';
+import { CategoryService } from 'src/app/services/category.service';
+import { IdUniquenessService } from 'src/app/services/id-uniqueness.service';
+import { ImageUploadService } from 'src/app/services/image-upload.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -15,15 +20,26 @@ export class AddProductComponent implements OnInit {
   idEntered!: number;
   buttonDisabled: boolean = true;
 
-  constructor(private http: HttpClient) { }
+  selectedFile!: File;
+  publicImageURL!: string;
+
+  pic!: any;
+
+
+  constructor( 
+    private idUniqueService: IdUniquenessService,
+    private categoryService: CategoryService,
+    private productService: ProductService,
+    private imageUpload: ImageUploadService
+    ) { }
 
   ngOnInit(): void {
     this.getCategoriesFromDatabase();
     this.getProductsFromDatabase();
   }
 
-  private getCategoriesFromDatabase() {
-    this.http.get<Category[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/categories.json").subscribe(res => {
+  private getCategoriesFromDatabase(): void  {
+    this.categoryService.getCategories().subscribe(res => {
       const newArray = [];
       for (const key in res) {
         newArray.push(res[key]);
@@ -32,8 +48,8 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  private getProductsFromDatabase() {
-    this.http.get<Product[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(res => {
+  private getProductsFromDatabase(): void {
+    this.productService.getProducts().subscribe(res => {
       this.products = res;
       const newArray = [];
       for (const key in res) {
@@ -43,38 +59,72 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  onCheckUniqueness() {
+  onCheckUniqueness(): void {
     if (this.idEntered && this.idEntered.toString().length === 8) {
       const index = this.products.findIndex(element => element.id === this.idEntered)
       if (index === -1) {
         // on unikaalne
-        console.log("unikaalne");
         this.buttonDisabled = false;
       } else {
         // ei ole unikaalne
-        console.log("ei ole unikaalne");
         this.buttonDisabled = true;
         
       }
+      this.idUniqueService.onCheckUniqueness(this.idEntered, this.products)
     }
   }
 
-  onSubmit(addProductForm: NgForm) {
+  handleFileInput(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+    this.sendPictureToDb();
+  }
+
+  sendPictureToDb() {
+    this.imageUpload.uploadPicture(this.selectedFile);
+    this.imageUpload.uploadComplete2.subscribe(() => {
+      this.showImage();
+    })
+  }
+
+  showImage() {
+    this.publicImageURL = this.imageUpload.uploadedPictureUrl
+  }
+
+  deletePic() {
+    // this.imageUpload.deletePicture(true); 
+    // comment out, sest kustutab kõik instansid ära antud pildist
+    this.publicImageURL = "";
+  }
+
+
+  onSubmit(addProductForm: NgForm): void {
+    const url = this.imageUpload.uploadedPictureUrl;
+
+    if (url === "") {
+      const isOk = confirm("Oled lisamas toodet ilma pildita, OK?");
+      if (isOk) {
+        console.log("lähen edasi");
+      } else {
+        console.log("katkestati");
+        
+      }
+    }
+
     if (addProductForm.valid) {
-      this.http.post(
-        "https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json",
-        addProductForm.value).subscribe( () => {
+      const val = addProductForm.value;
+      const newProduct = new Product(
+        val.id, val.name, val.price, url, val.description, val.category, val.isActive
+        );
+      console.log(addProductForm.value);
+      this.productService.addProduct(newProduct).subscribe( () => {
         addProductForm.reset();
-        this.http.get<Product[]>("https://webshop-hansu-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(res => {
-          this.products = res;
-          const newArray = [];
-          for (const key in res) {
-            newArray.push(res[key]);
-          }
-          this.products = newArray
-        });
+        this.publicImageURL = "";
+        this.getProductsFromDatabase();
+        
+        
           }
       );
+    
     }
 
   }

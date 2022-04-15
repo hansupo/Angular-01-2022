@@ -1,0 +1,14 @@
+<div ngbDropdown class="d-inline-block">
+    <button class="btn btn-light" id="dropdownBasic1" ngbDropdownToggle>Sorteeri
+
+
+
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <button ngbDropdownItem (click)="onSortNameAsc()">Sorteeri A-Z</button>
+      <button ngbDropdownItem (click)="onSortNameDesc()">Sorteeri Z-A</button>
+      <button ngbDropdownItem (click)="onSortPriceAsc()">Sorteeri soodsamast</button>
+      <button ngbDropdownItem (click)="onSortPriceDesc()">Sorteeri kallimast</button>
+    </div>
+  </div>
+  

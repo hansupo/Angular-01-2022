@@ -1,25 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
+<!-- <nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container-fluid container">
       <a class="navbar-brand" routerLink="/"><img src="assets/websho.png" alt=""></a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-
-            <a *ngIf="isLoggedIn" class="nav-link" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
-
-            <!-- <div class="lang-box">
-              <img class="lang-img" (click)="useLanguage('en')" src="assets/english.png" alt="">
-              <img class="lang-img" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
-            </div> -->
+            <a  class="nav-link" *ngIf="isLoggedIn" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
+            <a  class="nav-link"  routerLink="">{{'Tooted' | translate}}</a>
+            <a  class="nav-link"  routerLink="/ostukorv">{{ "navbar.cart-button" | translate}}<span> {{ sumOfCart | productPrice }}</span></a>
+            
+            <button class="btn btn-log btn-light" *ngIf="!isLoggedIn" (click)="openSm(content)">{{'Sisene' | translate}}</button>
+            <button class="btn btn-log btn-danger" *ngIf="isLoggedIn" (click)="onLogOut()" routerLink="logi-sisse">{{'Logi välja' | translate}}</button>
+            <div class="lang-img">
+              <img (click)="useLanguage('en')" src="assets/english.png" alt="">
+              <img (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
+            </div>
         </div>
       </div>
-      <img class="lang-img" (click)="useLanguage('en')" src="assets/english.png" alt="">
-      <img class="lang-img" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
-      <button *ngIf="!isLoggedIn" routerLink="logi-sisse">Logi sisse</button>
-      <button *ngIf="isLoggedIn" (click)="onLogOut()" routerLink="logi-sisse">Logi välja</button>
-      <a class="nav-link" routerLink="/ostukorv">{{ "navbar.cart-button" | translate}}</a>
-      <span style="color: white"> {{ sumOfCart | productPrice }}</span>
     </div>
-  </nav>
+  </nav><br><br> -->
+
+<!-- new nav -->
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid container">
+    <a class="navbar-brand" routerLink="/"><img src="assets/websho-parrot.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+          <div class="link-container">
+            <a  class="nav-link" *ngIf="isLoggedIn" routerLink="/admin">{{"navbar.admin-button" | translate}}</a>
+            <a  class="nav-link"  routerLink="/">{{'Tooted' | translate}}</a>
+            <a  class="nav-link"  routerLink="/poed">{{'Poed' | translate}}</a>
+            <!-- <a  class="nav-link"  routerLink="/logi-sisse">{{'Kontakt' | translate}}</a> -->
+            
+          </div>
+          <img *ngIf="language === 'ee'" (click)="useLanguage('en')" src="assets/english.png" alt="">
+          <img *ngIf="language === 'en'" (click)="useLanguage('ee')" src="assets/estonian.png" alt="">
+          <a class="login nav-link" *ngIf="!isLoggedIn" (click)="openSm(content)">{{'Sisene' | translate}}</a>
+          <a class="login nav-link" *ngIf="isLoggedIn" (click)="onLogOut()" routerLink="logi-sisse">{{'Logi välja' | translate}}</a>
+          <a  class="nav-link nav-cart"  routerLink="/ostukorv" [ngClass]="{empty: sumOfCart < 0, full: sumOfCart > 0}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="26" class="bi bi-cart-fill" viewBox="0 0 16 16">
+              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </svg>
+            <span *ngIf="sumOfCart > 0" class="nav-cart-total"> {{ sumOfCart | productPrice }}</span></a>
+          <!-- {{ "navbar.cart-button" | translate}} -->
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+        <!-- modal -->
+  <ng-template #content let-modal>
+    <div *ngIf="!isLoggedIn;else modal.close">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{'Sisselogimine' | translate}}</h4>
+        <button type="button" class="btn-close btn-light" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <app-login *ngIf="!isLoggedIn"></app-login>
+        <div *ngIf="isLoggedIn"><br>{{'Oled edukalt sisse logitud!' | translate}}<br><br></div>
+      </div>
+      <div class="modal-footer" *ngIf="isLoggedIn">
+        <!-- <span *ngIf="isLoggedIn > modal.close()"></span> -->
+        <button class="btn btn-light" (click)="modal.close('OK')">Dvj</button>
+        <button class="btn btn-danger" *ngIf="isLoggedIn" (click)="onLogOut(); modal.close('OK')" routerLink="logi-sisse">Logi välja</button>
+        <button (click)="test(modal)">test</button>
+      </div>
+    </div>
+  </ng-template>

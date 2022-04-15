@@ -1,8 +1,8 @@
 
-<form (ngSubmit)="onLogin(form)" #form="ngForm">
-    <label>E-mail</label>
-    <input ngModel name="email" type="text">
-    <label>Password</label>
-    <input ngModel name="password" type="password">
-    <button>Logi sisse</button>
-</form>
+    <form (ngSubmit)="onLogin(form)" #form="ngForm">
+        <label>E-mail</label><br>
+        <input class="form-control" ngModel name="email" type="text"><br><br>
+        <label>Password</label><br>
+        <input class="form-control" ngModel name="password" type="password"><br><br>
+        <div class="button-container"><button class="btn btn-light">Logi sisse</button></div>
+    </form>

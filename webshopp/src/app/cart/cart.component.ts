@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartProduct } from '../models/cart-products.model';
 import { Product } from '../models/product.model';
 import { CartService } from '../services/cart.service';
+import { PaymentService } from './payment.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,13 +15,11 @@ export class CartComponent implements OnInit {
   products: CartProduct[] = [];
   totalPrice = 0;
   paymentDone :boolean = false;
-  parcelMachines: any[] = [];
-  originalparcelMachines: any[] = [];
-  selectedCounty: string = "";
-  selectedPMachine: string = "";
+ 
 
   constructor(private http: HttpClient,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     const productsLS = sessionStorage.getItem("cart");
@@ -35,21 +34,13 @@ export class CartComponent implements OnInit {
     if (paymentDone && this.products.length !== 0) {this.paymentDone = false}
 
     this.onCalculateTotal();
-    this.http.get<any[]>("https://www.omniva.ee/locations.json").subscribe(res => {
-        this.originalparcelMachines = res.filter(element => element.A0_NAME === "EE");
-        this.parcelMachines = this.originalparcelMachines
-    })
-  }
 
-  showParcelMachinesByCounty() {
-    this.parcelMachines = this.originalparcelMachines.filter(element => 
-                                element.A1_NAME === this.selectedCounty);
   }
 
 
-  deleteSelectedPMAchine() {
-    this.selectedPMachine = "";
-  }
+
+
+
 
   onDecreaseQuantity(product: CartProduct) {
     product.quantity--;
@@ -77,8 +68,13 @@ export class CartComponent implements OnInit {
   }
 
   private onCalculateTotal() {
-    this.totalPrice = 0
-    this.products.forEach(element => this.totalPrice = this.totalPrice + element.cartProduct.price * element.quantity )
+    // this.totalPrice = 0
+    // this.products.forEach(element => this.totalPrice = this.totalPrice + element.cartProduct.price * element.quantity )
+    // this.cartService.cartChanged.next(this.products);
+
+    // 
+
+    this.totalPrice =  this.cartService.calculateCartSum(this.products);
     this.cartService.cartChanged.next(this.products);
   }
 
@@ -88,41 +84,18 @@ export class CartComponent implements OnInit {
     this.onCalculateTotal();
   }
 
-  private onPaymentDone() {
-    const paymentDone = true
-    sessionStorage.setItem("pay-done", JSON.stringify(paymentDone));
-    this.onEmptyCart();
-  }
+  // private onPaymentDone() {
+  //   const paymentDone = true
+  //   sessionStorage.setItem("pay-done", JSON.stringify(paymentDone));
+  //   this.onEmptyCart();
+  // }
 
-  onPay() {
-    const payDetails = {
-      "api_username": "92ddcfab96e34a5f",
-      "account_name": "EUR3D1",
-      "amount": this.totalPrice,
-      "order_reference": Math.floor(Math.random() * 8999999 + 100000),
-      "nonce": "92ddcfab96e34a5f" + Math.floor(Math.random() * 8999999 + 100000) + new Date() ,
-      "timestamp": new Date(),
-      "customer_url": 'https://www.delfi.ee/'
-    }
+  onPay() { 
 
-    const url = "https://igw-demo.every-pay.com/api/v4/payments/oneoff";
-
-    this.http.post<any>(
-      url,
-      payDetails,
-      {headers:
-        new HttpHeaders(
-          {
-            'Authorization': 
-            'Basic OTJkZGNmYWI5NmUzNGE1Zjo4Y2QxOWU5OWU5YzJjMjA4ZWU1NjNhYmY3ZDBlNGRhZA=='
-          }
-        )
-      }
-    ).subscribe(res => {
+    this.paymentService.makePayment(this.totalPrice).subscribe(res => {
       window.location.href = res.payment_link;
-      this.onPaymentDone();
     
-    });
+    })
   }
 
 }

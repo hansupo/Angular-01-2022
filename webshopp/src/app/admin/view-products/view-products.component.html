@@ -8,7 +8,7 @@
         <input type="range" min="0" max="15" value="5" [(ngModel)]="descriptionWords">
     </div><br>
 
-    <div class="product wrapper" *ngFor="let product of products">
+    <div class="product wrapper" *ngFor="let product of products.reverse()" [ngClass]="{active: product.isActive, inactive: !product.isActive}">
             <img src="{{ product.imgSrc }}" alt="">
             <div class="product-info">
                 <div class="info-element"><span>Toote ID: </span>{{product.id}}</div>
@@ -29,6 +29,13 @@
             (click)="onDeleteProduct(product)"
             >{{"admin.delete-button" | translate}}
          </button>
+         
+         <button 
+         class="btn btn-dark  active-button" 
+         (click)="changeActive(product)"
+         >{{"Aktiivne" | translate}}
+        </button>
+
         </div>
         <br><br>
     </div>

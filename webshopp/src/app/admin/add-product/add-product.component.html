@@ -31,20 +31,31 @@
                 name="price" 
                 type="number" 
                 required> <br>
+
             <label for="">Kirjeldus</label> <br>
-            <input 
+            <textarea 
+                Autosize
                 placeholder="Toote pikk kirjeldus" 
                 ngModel 
                 name="description" 
                 type="text" 
-                required> <br>
+                required> </textarea> <br>
+
             <label for="">Pildi URL</label> <br>
-            <input 
+            <!-- <input 
                 placeholder="Pildi URL aadress .jpg või .png lõpuga" 
                 ngModel 
                 name="imgSrc" 
                 type="text" 
-                required> <br>
+                required> <br> -->
+                <input 
+                ngModel 
+                name="imgSrc" 
+                type="file"
+                (change)="handleFileInput($event)"
+                >
+                <button type="button" *ngIf="this.selectedFile && this.publicImageURL !== ''" (click)="deletePic()">Kustuta pilt andmebaasist</button>
+                <br>
             <label for="">Kategooria</label> <br>
             <select ngModel name="category">
                 <option value="" disabled selected>Vali katekooria</option>
@@ -57,8 +68,8 @@
             <input class="checkbox" ngModel name="isActive" type="checkbox"> <br>
 
         </form>
-        <div class="rightside" *ngIf="addProductForm.value.imgSrc">
-            <img src="{{addProductForm.value.imgSrc}}" alt="">
+        <div class="rightside" *ngIf="publicImageURL">
+            <img src="{{publicImageURL}}" alt="">
             <button (click)="onSubmit(addProductForm)"
             class="btn btn-primary" [disabled]="addProductForm.invalid || buttonDisabled">{{"admin.add-button" | translate}}
             </button>

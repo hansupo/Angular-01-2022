@@ -2,7 +2,7 @@
 /* carousel above */
 .carousel-wrapper {
     width: 100%;
-    margin: 1rem 0;
+    margin: 2rem 0;
 }
 
 .picsum-img-wrapper {
@@ -30,33 +30,8 @@
     
 }
 
-.sort {
-    background-color: rgba(255, 255, 255, 0.089);
-    margin-bottom: 15px;
-}
-
-.sort-content {
-    display: flex;
-}
-
-.sort-button {
-    display:none;
-}
-
-.sort-element {
-    flex: 1;
-    padding: 1rem;
-    text-align: center;
-    border-right: 1px solid gray;
-    cursor: pointer;
-}
-
-.sort-content :last-child {
-    border-right: none;
-}
-
-.sort-element:hover {
-    background-color: rgba(255, 255, 255, 0.089);
+.d-inline-block {
+    margin: 0 1rem 0 0;
 }
 
 .wrapper img {
@@ -68,7 +43,7 @@
 
 .wrapper {
     display: flex;
-    margin-bottom: 15px;
+    margin: 1rem 0;
     overflow: hidden;
 }
 
@@ -117,9 +92,9 @@
     text-shadow: 2px 2px 1px rgb(19, 0, 41)
 }
 
-.buy-card > button:hover {
+/* .buy-card > button:hover {
     background-color: rgba(0, 0, 0, 0.651);
-}
+} */
 
 @media screen and (max-width: 768px) {
 
@@ -149,45 +124,7 @@
 
  
 
-    .sort-button {
-        display: block;
-        line-height: 3rem;
-        text-align: center;
-        padding: 1rem;
-        
 
-    }
-
-    .sort {
-        position: relative;
-    }
-
-    .sort-element {
-        border-right: none;
-        display: block;
-        line-height: 3rem;
-        text-align: center;
-        border-top: 1px solid grey;
-        cursor: pointer;
-    }
-
-    .sort-content {
-        display: none;
- 
-    }
-
-    .sort-element {
-    }
-
-    .sort:hover .sort-content {
-        display: block;
-        position: absolute;
-        background-color: #1a1a1ac9;
-        backdrop-filter: blur(20px);
-        width: 100%;
-        z-index: 10;
-        
-    }
 
     
 }
@@ -231,6 +168,15 @@
 
   .dropdown-item {
     float: left;
+  }
+
+
+  .active {
+    border: 1px solid green;
+  }
+
+  .inactive {
+    border: 1px solid red;
   }
 
 

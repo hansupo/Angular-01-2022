@@ -1,0 +1,12 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 1rem 5rem;
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+}

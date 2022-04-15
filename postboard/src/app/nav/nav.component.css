@@ -1,0 +1,23 @@
+
+.nav {
+    display: flex;
+    background-color: #303030;
+    padding: 0.25rem 0.8rem 0 0.8rem;
+    height: 3rem;
+    padding-bottom: 2rem;
+    flex: 1;
+    vertical-align: middle;
+}
+
+button {
+    flex: 1;
+    filter: invert();
+}
+
+
+
+img {
+    height: 24px;
+    object-fit: cover;
+    filter: invert();
+}

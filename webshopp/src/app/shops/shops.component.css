@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  padding: 2rem;
+}
+
+.map-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 75vh;
+    width: 100%;
+  }
+  
+  .map-frame {
+    height: 100%;
+  }
+  
+  #map {
+    height: 100%;
+  }
+
+  .list {
+    width: 30%;
+    padding: 1rem;
+  }
+
+  h2 {
+    padding: 1rem;
+    background-color: unset;
+  }
+
+
+  .stores {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .stores > div {
+    padding: 0.5rem 0;
+  }
+
+  .stores > div:hover {
+    text-decoration: underline;
+    cursor: pointer;
+
+  }
+  

@@ -1,0 +1,36 @@
+.container {
+  padding-top: 0.15rem;
+  padding-bottom: 5rem;
+}
+
+
+
+.example-card {
+    max-width: 400px;
+    margin: 0.75rem;
+  }
+
+
+
+
+
+.post-date {
+  width: 100%;
+  font-size: 0.75rem;
+  height: 1rem;
+  color: rgba(255,255,255,.7);
+  padding: 0.5rem;
+  display: flex;
+}
+
+.mat-card-avatar {
+  margin-bottom: 0.5rem;
+}
+
+
+mat-card-header > button {
+  color: rgba(255,255,255,.7);
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}

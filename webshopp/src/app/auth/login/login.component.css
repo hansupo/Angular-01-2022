@@ -1,0 +1,9 @@
+form {
+backdrop-filter: blur(10px);
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: end;
+}
